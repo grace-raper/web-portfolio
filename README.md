@@ -1,11 +1,10 @@
-# Recreation of Award-winning Bokoko33's Portfolio
+# Portfolio of Software / Design Work
 
+todo: fix below link
 **[Live demo](https://abigail-bloom-portolio-bokoko33.vercel.app/)**
 
-This repo contains code of a recreation of **[Bokoko33's award-winning website](https://bokoko33.me/)**. The original creator asks to please not use this _exact_ idea,
-but feel free to use it as a starting point/inspiration.
-
-![Home page screenshot](public/social/screenshot.png?raw=true "Home page screenshot")
+The design concept & inspiration of this portfolio was **[Bokoko33's award-winning website](https://bokoko33.me/)**. The original creator asks to please not use this _exact_ idea,
+but encouraged others to use it as a starting point/inspiration.
 
 ## Instructions
 

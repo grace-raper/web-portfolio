@@ -26,19 +26,9 @@ export default class World extends EventEmitter {
             this.emit("worldready");
         });
 
-        this.theme.on("switch", (theme) => {
-            this.switchTheme(theme);
-        });
-
         // this.sizes.on("switchdevice", (device) => {
         //     this.switchDevice(device);
         // });
-    }
-
-    switchTheme(theme) {
-        if (this.environment) {
-            this.environment.switchTheme(theme);
-        }
     }
 
     // switchDevice(device) {

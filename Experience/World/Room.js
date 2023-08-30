@@ -2,6 +2,7 @@ import * as THREE from "three";
 import Experience from "../Experience.js";
 import GSAP from "gsap";
 import { RectAreaLightHelper } from "three/examples/jsm/helpers/RectAreaLightHelper.js";
+import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader.js";
 
 export default class Room {
     constructor() {
@@ -99,6 +100,8 @@ export default class Room {
         rectLight.rotation.z = Math.PI / 4;
         this.actualRoom.add(rectLight);
 
+        //this.actualRoom.add(this.resources.items.computer.scene)
+
         this.roomChildren["rectLight"] = rectLight;
 
         // const rectLightHelper = new RectAreaLightHelper(rectLight);
@@ -111,8 +114,8 @@ export default class Room {
 
     setAnimation() {
         this.mixer = new THREE.AnimationMixer(this.actualRoom);
-        this.swim = this.mixer.clipAction(this.room.animations[0]);
-        this.swim.play();
+        // this.swim = this.mixer.clipAction(this.room.animations[0]);
+        // this.swim.play();
     }
 
     onMouseMove() {

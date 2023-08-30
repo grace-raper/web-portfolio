@@ -61,6 +61,7 @@ export default class Resources extends EventEmitter {
     }
 
     singleAssetLoaded(asset, file) {
+        console.log(asset.name)
         this.items[asset.name] = file;
         this.loaded++;
 

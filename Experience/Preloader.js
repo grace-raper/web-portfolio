@@ -291,7 +291,7 @@ export default class Preloader extends EventEmitter {
                         ease: "power1.out",
                         duration: 0.5,
                     },
-                    ">-0.3"
+                    ">-0.2"
                 )
                 .to(
                     this.roomChildren.coffee.scale,
@@ -302,7 +302,7 @@ export default class Preloader extends EventEmitter {
                         ease: "power1.out",
                         duration: 0.5,
                     },
-                    ">-0.3"
+                    ">-0.45"
                 )
                 .to(
                     this.roomChildren.computer_stand.scale,
@@ -313,7 +313,7 @@ export default class Preloader extends EventEmitter {
                         ease: "power1.out",
                         duration: 0.5,
                     },
-                    ">-0.4"
+                    ">-0.45"
                 )
                 .to(
                     this.roomChildren.computer.scale,
@@ -324,7 +324,7 @@ export default class Preloader extends EventEmitter {
                         ease: "power1.out",
                         duration: 0.5,
                     },
-                    ">-0.4"
+                    ">-0.45"
                 )
                 .to(
                     this.roomChildren.keyboard.scale,
@@ -335,7 +335,7 @@ export default class Preloader extends EventEmitter {
                         ease: "power1.out",
                         duration: 0.5,
                     },
-                    ">-0.4"
+                    ">-0.45"
                 )
                 .to(
                     this.roomChildren.notepad.scale,
@@ -346,7 +346,7 @@ export default class Preloader extends EventEmitter {
                         ease: "power1.out",
                         duration: 0.5,
                     },
-                    ">-0.4"
+                    ">-0.45"
                 )
                 .to(
                     this.roomChildren.dslr.scale,
@@ -357,7 +357,7 @@ export default class Preloader extends EventEmitter {
                         ease: "power1.out",
                         duration: 0.5,
                     },
-                    ">-0.3"
+                    ">-0.4"
                 )
                 .to(
                     this.roomChildren.frame.scale,
@@ -368,7 +368,7 @@ export default class Preloader extends EventEmitter {
                         ease: "power1.out",
                         duration: 0.5,
                     },
-                    ">-0.3"
+                    ">-0.4"
                 )
                 .to(
                     this.roomChildren.row1book1.scale,
@@ -445,7 +445,7 @@ export default class Preloader extends EventEmitter {
                         ease: "power1.out",
                         duration: 0.5,
                     },
-                    ">-0.3"
+                    ">-0.45"
                 )
                 .to(
                     this.roomChildren.plant.scale,
@@ -456,7 +456,7 @@ export default class Preloader extends EventEmitter {
                         ease: "power1.out",
                         duration: 0.5,
                     },
-                    ">-0.2"
+                    ">-0.45"
                 )
                 .to(
                     this.roomChildren.phone.scale,
@@ -467,7 +467,7 @@ export default class Preloader extends EventEmitter {
                         ease: "power1.out",
                         duration: 0.5,
                     },
-                    ">-0.3"
+                    ">-0.45"
                 )
                 .to(
                     this.roomChildren.cessna.scale,
@@ -478,7 +478,7 @@ export default class Preloader extends EventEmitter {
                         ease: "power1.out",
                         duration: 0.5,
                     },
-                    ">-0.2"
+                    ">-0.45"
                 )
                 .to(
                     this.roomChildren.row2book6.scale,
@@ -489,7 +489,7 @@ export default class Preloader extends EventEmitter {
                         ease: "power1.out",
                         duration: 0.5,
                     },
-                    ">-0.3"
+                    ">-0.45"
                 )
                 .to(
                     this.roomChildren.row2book5.scale,
@@ -555,7 +555,7 @@ export default class Preloader extends EventEmitter {
                         ease: "power1.out",
                         duration: 0.5,
                     },
-                    ">-0.3"
+                    ">-0.45"
                 )
                 .to(
                     this.roomChildren.row3book1.scale,
@@ -566,7 +566,7 @@ export default class Preloader extends EventEmitter {
                         ease: "power1.out",
                         duration: 0.5,
                     },
-                    ">-0.2"
+                    ">-0.45"
                 )
                 .to(
                     this.roomChildren.row3book2.scale,
@@ -639,9 +639,9 @@ export default class Preloader extends EventEmitter {
                 {
                     y: 2 * Math.PI + Math.PI / 5,
                     ease: "power2.out",
-                    duration: 2,
+                    duration: 1,
                 },
-                    ">-0.3"
+                    ">-0.5"
             )
                 .to(".arrow-svg-wrapper", {
                     opacity: 1,

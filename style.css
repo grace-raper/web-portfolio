@@ -26,7 +26,8 @@ svg{
   /* Light Theme Variables */
   --color-text-light: #333332;
   --color-background-light: #FAF4E5;
-  --color-pink-light: #e5a1aa;
+  /* Loading dots & accent color for section 1 text */
+  --color-pink-light: #B3C9CC;
   --color-green-light: #7AD0AC;
   --color-blue-light: #8395CD;
 

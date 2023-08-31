@@ -216,124 +216,442 @@ export default class Preloader extends EventEmitter {
                     },
                     "introtext"
                 )
+                .to(
+                    this.roomChildren.rug.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.1"
+                )
+                .to(
+                    this.roomChildren.desk.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.2"
+                )
                 // .to(
-                //     this.roomChildren.aquarium.scale,
+                //     this.roomChildren.chair_base.scale,
                 //     {
                 //         x: 1,
                 //         y: 1,
                 //         z: 1,
-                //         ease: "back.out(2.2)",
-                //         duration: 0.5,
-                //     },
-                //     ">-0.5"
-                // )
-                // .to(
-                //     this.roomChildren.clock.scale,
-                //     {
-                //         x: 1,
-                //         y: 1,
-                //         z: 1,
-                //         ease: "back.out(2.2)",
-                //         duration: 0.5,
-                //     },
-                //     ">-0.4"
-                // )
-                // .to(
-                //     this.roomChildren.shelves.scale,
-                //     {
-                //         x: 1,
-                //         y: 1,
-                //         z: 1,
-                //         ease: "back.out(2.2)",
-                //         duration: 0.5,
-                //     },
-                //     ">-0.3"
-                // )
-                // .to(
-                //     this.roomChildren.floor_items.scale,
-                //     {
-                //         x: 1,
-                //         y: 1,
-                //         z: 1,
-                //         ease: "back.out(2.2)",
+                //         ease: "power1.out",
                 //         duration: 0.5,
                 //     },
                 //     ">-0.2"
                 // )
                 // .to(
-                //     this.roomChildren.desks.scale,
+                //     this.roomChildren.chair_top.scale,
                 //     {
                 //         x: 1,
                 //         y: 1,
                 //         z: 1,
-                //         ease: "back.out(2.2)",
+                //         ease: "power1.out",
                 //         duration: 0.5,
                 //     },
-                //     ">-0.1"
+                //     ">-0.2"
                 // )
-                // .to(
-                //     this.roomChildren.table_stuff.scale,
-                //     {
-                //         x: 1,
-                //         y: 1,
-                //         z: 1,
-                //         ease: "back.out(2.2)",
-                //         duration: 0.5,
-                //     },
-                //     ">-0.1"
-                // )
-                // .to(this.roomChildren.computer.scale, {
-                //     x: 1,
-                //     y: 1,
-                //     z: 1,
-                //     ease: "back.out(2.2)",
-                //     duration: 0.5,
-                // })
-                // .set(this.roomChildren.mini_floor.scale, {
-                //     x: 1,
-                //     y: 1,
-                //     z: 1,
-                // })
-                // .to(
-                //     this.roomChildren.chair.scale,
-                //     {
-                //         x: 1,
-                //         y: 1,
-                //         z: 1,
-                //         ease: "back.out(2.2)",
-                //         duration: 0.5,
-                //     },
-                //     "chair"
-                // )
-                // .to(
-                //     this.roomChildren.fish.scale,
-                //     {
-                //         x: 1,
-                //         y: 1,
-                //         z: 1,
-                //         ease: "back.out(2.2)",
-                //         duration: 0.5,
-                //     },
-                //     "chair"
-                // )
-                // .to(
-                //     this.roomChildren.chair.rotation,
-                //     {
-                //         y: 4 * Math.PI + Math.PI / 4,
-                //         ease: "power2.out",
-                //         duration: 1,
-                //     },
-                //     "chair"
-                // )
+                .to(
+                    this.roomChildren.coffee_table.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.2"
+                )
+                .to(
+                    this.roomChildren.bookshelf.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.2"
+                )
+                .to(
+                    this.roomChildren.clock.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.3"
+                )
+                .to(
+                    this.roomChildren.coffee.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.3"
+                )
+                .to(
+                    this.roomChildren.computer_stand.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.4"
+                )
+                .to(
+                    this.roomChildren.computer.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.4"
+                )
+                .to(
+                    this.roomChildren.keyboard.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.4"
+                )
+                .to(
+                    this.roomChildren.notepad.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.4"
+                )
+                .to(
+                    this.roomChildren.dslr.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.3"
+                )
+                .to(
+                    this.roomChildren.frame.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.3"
+                )
+                .to(
+                    this.roomChildren.row1book1.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.3"
+                )
+                .to(
+                    this.roomChildren.row1book2.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.45"
+                )
+                .to(
+                    this.roomChildren.row1book3.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.45"
+                )
+                .to(
+                    this.roomChildren.row1book4.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.45"
+                )
+                .to(
+                    this.roomChildren.row1book5.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.45"
+                )
+                .to(
+                    this.roomChildren.row1book6.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.45"
+                )
+                .to(
+                    this.roomChildren.ghost_pacer.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.3"
+                )
+                .to(
+                    this.roomChildren.plant.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.2"
+                )
+                .to(
+                    this.roomChildren.phone.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.3"
+                )
+                .to(
+                    this.roomChildren.cessna.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.2"
+                )
+                .to(
+                    this.roomChildren.row2book6.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.3"
+                )
+                .to(
+                    this.roomChildren.row2book5.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.45"
+                )
+                .to(
+                    this.roomChildren.row2book4.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.45"
+                )
+                .to(
+                    this.roomChildren.row2book3.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.45"
+                )
+                .to(
+                    this.roomChildren.row2book2.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.45"
+                )
+                .to(
+                    this.roomChildren.row2book1.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.45"
+                )
+                .to(
+                    this.roomChildren.husky.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.3"
+                )
+                .to(
+                    this.roomChildren.row3book1.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.2"
+                )
+                .to(
+                    this.roomChildren.row3book2.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.45"
+                )
+                .to(
+                    this.roomChildren.row3book3.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.45"
+                )
+                .to(
+                    this.roomChildren.row3book4.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.45"
+                )
+                .to(
+                    this.roomChildren.row3book5.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.45"
+                )
+                .to(
+                    this.roomChildren.chair_base.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.3"
+                )
+                .to(
+                    this.roomChildren.chair_top.scale,
+                    {
+                        x: 1,
+                        y: 1,
+                        z: 1,
+                        ease: "power1.out",
+                        duration: 0.5,
+                    },
+                    ">-0.3"
+                )
+                .to(
+                this.roomChildren.chair_top.rotation,
+                {
+                    y: 2 * Math.PI + Math.PI / 5,
+                    ease: "power2.out",
+                    duration: 2,
+                },
+                    ">-0.3"
+            )
                 .to(".arrow-svg-wrapper", {
                     opacity: 1,
                     onComplete: resolve,
                 });
 
 
-            this.room.children.forEach((child) => {
-                child.scale.set(1, 1, 1);
-            });
+            // this.room.children.forEach((child) => {
+            //     child.scale.set(1, 1, 1);
+            // });
         });
     }
 

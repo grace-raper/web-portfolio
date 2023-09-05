@@ -106,16 +106,25 @@ export default class Controls {
                         // markers: true,
                         invalidateOnRefresh: true,
                     },
-                });
-                this.firstMoveTimeline.fromTo(
+                })
+                .to(
                     this.room.position,
-                    { x: 0, y: 0, z: 0 },
                     {
                         x: () => {
                             return this.sizes.width * 0.0014;
-                        },
-                    }
+                        }
+                    }, "same"
                 );
+                // });
+                // this.firstMoveTimeline.fromTo(
+                //     this.room.position,
+                //     { x: 0, y: 0, z: 0 },
+                //     {
+                //         x: () => {
+                //             return this.sizes.width * 0.0014;
+                //         },
+                //     }, "same"
+                // );
 
                 // Second section -----------------------------------------
                 this.secondMoveTimeline = new GSAP.timeline({
@@ -127,35 +136,71 @@ export default class Controls {
                         invalidateOnRefresh: true,
                     },
                 })
-                    .to(
-                        this.room.position,
-                        {
-                            x: () => {
-                                return 1;
-                            },
-                            z: () => {
-                                return this.sizes.height * 0.0032;
-                            },
+                .to(
+                    this.room.position,
+                    {
+                        x: () => {
+                            return this.sizes.width * -0.0036;
                         },
-                        "same"
-                    )
-                    .to(
-                        this.room.scale,
-                        {
-                            x: 0.4,
-                            y: 0.4,
-                            z: 0.4,
-                        },
-                        "same"
-                    )
-                    .to(
-                        this.rectLight,
-                        {
-                            width: 0.5 * 4,
-                            height: 0.7 * 4,
-                        },
-                        "same"
-                    );
+                        z: () => {
+                            return this.sizes.height * 0.011;
+                        }
+                    }, "same"
+                )
+                .to(
+                    this.room.scale,
+                    {
+                        x: 0.7,
+                        y: 0.7,
+                        z: 0.7,
+                    },
+                    "same"
+                );
+                // this.secondMoveTimeline.fromTo(
+                //     this.room.position,
+                //     { x: this.sizes.width * 0.0014, y: 0, z: 0 },
+                //     {
+                //         x: () => {
+                //             return this.sizes.width *  2 * -0.0014;
+                //         },
+                //     }
+                // );
+                    // .to(
+                    //     this.room.position,
+                    //     {
+                    //         x: () => {
+                    //             return 1;
+                    //         },
+                    //         z: () => {
+                    //             return this.sizes.height * 0.0032;
+                    //         },
+                    //     },
+                    //     "same"
+                    // )
+                    // .to(
+                    //     this.room.scale,
+                    //     {
+                    //         x: 0.7,
+                    //         y: 0.7,
+                    //         z: 0.7,
+                    //     },
+                    //     "same"
+                    // ).to(
+                    //     this.camera.orthographicCamera.position,
+                    //     {
+                    //     y: 11.5,
+                    //     x: 9,
+                    // },
+                    //     ">-100%"
+                    // )
+                    // .to(
+                    //     this.rectLight,
+                    //     {
+                    //         width: 0.5 * 4,
+                    //         height: 0.7 * 4,
+                    //     },
+                    //     "same"
+                    // );
 
                 // Third section -----------------------------------------
                 this.thirdMoveTimeline = new GSAP.timeline({
@@ -166,10 +211,115 @@ export default class Controls {
                         scrub: 0.6,
                         invalidateOnRefresh: true,
                     },
-                }).to(this.camera.orthographicCamera.position, {
-                    y: 1.5,
-                    x: -4.1,
-                });
+                })
+                    .to(
+                        this.room.position,
+                        {
+                            x: () => {
+                                return this.sizes.width * 0.0037;
+                            },
+                            z: () => {
+                                return this.sizes.height * 0.005;
+                            }
+                        }, "same"
+                    )
+                    .to(
+                        this.room.scale,
+                        {
+                            x: 0.5,
+                            y: 0.5,
+                            z: 0.5,
+                        },
+                        "same"
+                    );
+
+
+                this.fourthMoveTimeline = new GSAP.timeline({
+                    scrollTrigger: {
+                        trigger: ".fourth-move",
+                        start: "top top",
+                        end: "bottom bottom",
+                        scrub: 0.6,
+                        invalidateOnRefresh: true,
+                    },
+                })
+                    .to(
+                        this.room.position,
+                        {
+                            z: () => {
+                                return this.sizes.height * -0.002;
+                            }
+                        },
+                            "same"
+                    )
+                    .to(
+                        this.room.scale,
+                        {
+                            x: 0.3,
+                            y: 0.3,
+                            z: 0.3,
+                        },
+                        "same"
+                    // ).to(
+                    //     this.camera.orthographicCamera.position,
+                    //     {
+                    //         y: 4,
+                    //         x: -4,
+                    //     },
+                    //     ">-100%"
+                    );
+
+                this.fifthMoveTimeline = new GSAP.timeline({
+                    scrollTrigger: {
+                        trigger: ".fifth-move",
+                        start: "top top",
+                        end: "bottom bottom",
+                        scrub: 0.6,
+                        invalidateOnRefresh: true,
+                    },
+                })
+                    .to(
+                        this.room.scale,
+                        {
+                            x: 0.11,
+                            y: 0.11,
+                            z: 0.11,
+                        },
+                        "same"
+                    // ).to(
+                    //     this.camera.orthographicCamera.position,
+                    //     {
+                    //         y: 0,
+                    //         x: 0,
+                    //     },
+                    //     ">-100%"
+                    );
+
+                this.sixthMoveTimeline = new GSAP.timeline({
+                    scrollTrigger: {
+                        trigger: ".third-move",
+                        start: "top top",
+                        end: "bottom bottom",
+                        scrub: 0.6,
+                        invalidateOnRefresh: true,
+                    },
+                })
+                    .to(
+                        this.room.scale,
+                        {
+                            x: 0.7,
+                            y: 0.7,
+                            z: 0.7,
+                        },
+                        "same"
+                    ).to(
+                        this.camera.orthographicCamera.position,
+                        {
+                            y: 9,
+                            x: 8,
+                        },
+                        ">-100%"
+                    );
             },
 
             // Mobile

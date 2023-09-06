@@ -1,243 +1,306 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, target-densityDpi=device-dpi, minimal-ui' />
-  <title>Abigail Bloom</title>
+    <meta charset="UTF-8"/>
+    <link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, target-densityDpi=device-dpi, minimal-ui'
+          name='viewport'/>
+    <title>Abigail Bloom</title>
 </head>
 <body class="light-theme">
 <div class="experience">
-  <canvas class="experience-canvas"></canvas>
+    <canvas class="experience-canvas"></canvas>
 </div>
 
 <!-- Preloader -->
 <div class="preloader">
-  <div class="preloader-wrapper">
-    <div class="loading">
-      <div class="circle"></div>
-      <div class="circle"></div>
-      <div class="circle"></div>
+    <div class="preloader-wrapper">
+        <div class="loading">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
     </div>
-  </div>
 </div>
 
-<div class="page" asscroll-container>
+<div asscroll-container class="page">
 
-  <div class="toggle-bar">
-    <div class="sun-wrapper">
-      <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path fill="currentColor" d="M12 5Q11.575 5 11.288 4.712Q11 4.425 11 4V2Q11 1.575 11.288 1.287Q11.575 1 12 1Q12.425 1 12.713 1.287Q13 1.575 13 2V4Q13 4.425 12.713 4.712Q12.425 5 12 5ZM16.95 7.05Q16.675 6.775 16.675 6.362Q16.675 5.95 16.95 5.65L18.35 4.225Q18.65 3.925 19.062 3.925Q19.475 3.925 19.775 4.225Q20.05 4.5 20.05 4.925Q20.05 5.35 19.775 5.625L18.35 7.05Q18.075 7.325 17.65 7.325Q17.225 7.325 16.95 7.05ZM20 13Q19.575 13 19.288 12.712Q19 12.425 19 12Q19 11.575 19.288 11.287Q19.575 11 20 11H22Q22.425 11 22.712 11.287Q23 11.575 23 12Q23 12.425 22.712 12.712Q22.425 13 22 13ZM12 23Q11.575 23 11.288 22.712Q11 22.425 11 22V20Q11 19.575 11.288 19.288Q11.575 19 12 19Q12.425 19 12.713 19.288Q13 19.575 13 20V22Q13 22.425 12.713 22.712Q12.425 23 12 23ZM5.65 7.05 4.225 5.65Q3.925 5.35 3.925 4.925Q3.925 4.5 4.225 4.225Q4.5 3.95 4.925 3.95Q5.35 3.95 5.625 4.225L7.05 5.65Q7.325 5.925 7.325 6.35Q7.325 6.775 7.05 7.05Q6.75 7.325 6.35 7.325Q5.95 7.325 5.65 7.05ZM18.35 19.775 16.95 18.35Q16.675 18.05 16.675 17.638Q16.675 17.225 16.95 16.95Q17.225 16.675 17.638 16.675Q18.05 16.675 18.35 16.95L19.775 18.35Q20.075 18.625 20.062 19.05Q20.05 19.475 19.775 19.775Q19.475 20.075 19.05 20.075Q18.625 20.075 18.35 19.775ZM2 13Q1.575 13 1.288 12.712Q1 12.425 1 12Q1 11.575 1.288 11.287Q1.575 11 2 11H4Q4.425 11 4.713 11.287Q5 11.575 5 12Q5 12.425 4.713 12.712Q4.425 13 4 13ZM4.225 19.775Q3.95 19.5 3.95 19.075Q3.95 18.65 4.225 18.375L5.65 16.95Q5.925 16.675 6.338 16.675Q6.75 16.675 7.05 16.95Q7.35 17.25 7.35 17.663Q7.35 18.075 7.05 18.375L5.65 19.775Q5.35 20.075 4.925 20.075Q4.5 20.075 4.225 19.775ZM12 18Q9.5 18 7.75 16.25Q6 14.5 6 12Q6 9.5 7.75 7.75Q9.5 6 12 6Q14.5 6 16.25 7.75Q18 9.5 18 12Q18 14.5 16.25 16.25Q14.5 18 12 18ZM12 16Q13.65 16 14.825 14.825Q16 13.65 16 12Q16 10.35 14.825 9.175Q13.65 8 12 8Q10.35 8 9.175 9.175Q8 10.35 8 12Q8 13.65 9.175 14.825Q10.35 16 12 16Z"/></svg>
+    <div class="toggle-bar">
+        <div class="sun-wrapper">
+            <svg height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 5Q11.575 5 11.288 4.712Q11 4.425 11 4V2Q11 1.575 11.288 1.287Q11.575 1 12 1Q12.425 1 12.713 1.287Q13 1.575 13 2V4Q13 4.425 12.713 4.712Q12.425 5 12 5ZM16.95 7.05Q16.675 6.775 16.675 6.362Q16.675 5.95 16.95 5.65L18.35 4.225Q18.65 3.925 19.062 3.925Q19.475 3.925 19.775 4.225Q20.05 4.5 20.05 4.925Q20.05 5.35 19.775 5.625L18.35 7.05Q18.075 7.325 17.65 7.325Q17.225 7.325 16.95 7.05ZM20 13Q19.575 13 19.288 12.712Q19 12.425 19 12Q19 11.575 19.288 11.287Q19.575 11 20 11H22Q22.425 11 22.712 11.287Q23 11.575 23 12Q23 12.425 22.712 12.712Q22.425 13 22 13ZM12 23Q11.575 23 11.288 22.712Q11 22.425 11 22V20Q11 19.575 11.288 19.288Q11.575 19 12 19Q12.425 19 12.713 19.288Q13 19.575 13 20V22Q13 22.425 12.713 22.712Q12.425 23 12 23ZM5.65 7.05 4.225 5.65Q3.925 5.35 3.925 4.925Q3.925 4.5 4.225 4.225Q4.5 3.95 4.925 3.95Q5.35 3.95 5.625 4.225L7.05 5.65Q7.325 5.925 7.325 6.35Q7.325 6.775 7.05 7.05Q6.75 7.325 6.35 7.325Q5.95 7.325 5.65 7.05ZM18.35 19.775 16.95 18.35Q16.675 18.05 16.675 17.638Q16.675 17.225 16.95 16.95Q17.225 16.675 17.638 16.675Q18.05 16.675 18.35 16.95L19.775 18.35Q20.075 18.625 20.062 19.05Q20.05 19.475 19.775 19.775Q19.475 20.075 19.05 20.075Q18.625 20.075 18.35 19.775ZM2 13Q1.575 13 1.288 12.712Q1 12.425 1 12Q1 11.575 1.288 11.287Q1.575 11 2 11H4Q4.425 11 4.713 11.287Q5 11.575 5 12Q5 12.425 4.713 12.712Q4.425 13 4 13ZM4.225 19.775Q3.95 19.5 3.95 19.075Q3.95 18.65 4.225 18.375L5.65 16.95Q5.925 16.675 6.338 16.675Q6.75 16.675 7.05 16.95Q7.35 17.25 7.35 17.663Q7.35 18.075 7.05 18.375L5.65 19.775Q5.35 20.075 4.925 20.075Q4.5 20.075 4.225 19.775ZM12 18Q9.5 18 7.75 16.25Q6 14.5 6 12Q6 9.5 7.75 7.75Q9.5 6 12 6Q14.5 6 16.25 7.75Q18 9.5 18 12Q18 14.5 16.25 16.25Q14.5 18 12 18ZM12 16Q13.65 16 14.825 14.825Q16 13.65 16 12Q16 10.35 14.825 9.175Q13.65 8 12 8Q10.35 8 9.175 9.175Q8 10.35 8 12Q8 13.65 9.175 14.825Q10.35 16 12 16Z"
+                      fill="currentColor"/>
+            </svg>
+        </div>
+        <button class="toggle-button">
+            <div class="toggle-circle"></div>
+        </button>
+        <div class="moon-wrapper">
+            <svg height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 21Q8.25 21 5.625 18.375Q3 15.75 3 12Q3 8.25 5.625 5.625Q8.25 3 12 3Q12.35 3 12.688 3.025Q13.025 3.05 13.35 3.1Q12.325 3.825 11.713 4.987Q11.1 6.15 11.1 7.5Q11.1 9.75 12.675 11.325Q14.25 12.9 16.5 12.9Q17.875 12.9 19.025 12.287Q20.175 11.675 20.9 10.65Q20.95 10.975 20.975 11.312Q21 11.65 21 12Q21 15.75 18.375 18.375Q15.75 21 12 21ZM12 19Q14.2 19 15.95 17.788Q17.7 16.575 18.5 14.625Q18 14.75 17.5 14.825Q17 14.9 16.5 14.9Q13.425 14.9 11.262 12.738Q9.1 10.575 9.1 7.5Q9.1 7 9.175 6.5Q9.25 6 9.375 5.5Q7.425 6.3 6.213 8.05Q5 9.8 5 12Q5 14.9 7.05 16.95Q9.1 19 12 19ZM11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Z"
+                      fill="currentColor"/>
+            </svg>
+        </div>
     </div>
-    <button class="toggle-button">
-      <div class="toggle-circle"></div>
-    </button>
-    <div class="moon-wrapper">
-      <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path fill="currentColor" d="M12 21Q8.25 21 5.625 18.375Q3 15.75 3 12Q3 8.25 5.625 5.625Q8.25 3 12 3Q12.35 3 12.688 3.025Q13.025 3.05 13.35 3.1Q12.325 3.825 11.713 4.987Q11.1 6.15 11.1 7.5Q11.1 9.75 12.675 11.325Q14.25 12.9 16.5 12.9Q17.875 12.9 19.025 12.287Q20.175 11.675 20.9 10.65Q20.95 10.975 20.975 11.312Q21 11.65 21 12Q21 15.75 18.375 18.375Q15.75 21 12 21ZM12 19Q14.2 19 15.95 17.788Q17.7 16.575 18.5 14.625Q18 14.75 17.5 14.825Q17 14.9 16.5 14.9Q13.425 14.9 11.262 12.738Q9.1 10.575 9.1 7.5Q9.1 7 9.175 6.5Q9.25 6 9.375 5.5Q7.425 6.3 6.213 8.05Q5 9.8 5 12Q5 14.9 7.05 16.95Q9.1 19 12 19ZM11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Q11.75 12.25 11.75 12.25Z"/></svg>
-    </div>
-  </div>
 
-  <div class="page-wrapper" asscroll>
-    <section class="hero">
-      <div class="hero-wrapper">
+    <div asscroll class="page-wrapper">
+        <section class="hero">
+            <div class="hero-wrapper">
 
-        <!-- Intro Stuff -->
-        <div class="intro-text">Welcome to my portfolio!</div>
-        <div class="arrow-svg-wrapper">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24"><path fill="currentColor" d="M12 14.95q-.2 0-.375-.063-.175-.062-.325-.212L6.675 10.05q-.275-.275-.262-.688.012-.412.287-.687.275-.275.7-.275.425 0 .7.275l3.9 3.9 3.925-3.925q.275-.275.688-.263.412.013.687.288.275.275.275.7 0 .425-.275.7l-4.6 4.6q-.15.15-.325.212-.175.063-.375.063Z"/></svg>
-        </div>
-
-        <div class="hero-main">
-          <h1 class="hero-main-title">Grace Raper</h1>
-          <p class="hero-main-description">XR Software Engineer</p>
-        </div>
-
-        <div class="hero-second">
-          <p class="hero-second-subheading first-sub">Digital</p>
-          <p class="hero-second-subheading second-sub">Portfolio</p>
-        </div>
-
-      </div>
-    </section>
-
-    <div class="first-move section-margin"></div>
-
-    <section class="first-section section left">
-      <div class="progress-wrapper progress-bar-wrapper-left">
-        <div class="progress-bar"></div>
-      </div>
-
-      <div class="section-intro-wrapper">
-        <h1 class="section-title">
-          <span class="section-title-text">About Me</span>
-<!--          <div class="section-title-decoration styleOne"></div>-->
-<!--          <div class="section-title-decoration styleTwo"></div>-->
-<!--          <div class="section-title-decoration styleThree"></div>-->
-        </h1>
-        <span class="section-number">01</span>
-      </div>
-
-
-      <div class="section-detail-wrapper">
-        <h3 class="section-heading">Hi there, I'm Grace! 👋</h3>
-        <p class="section-text">I'm a XR software engineer with a passion for leveraging emerging technologies to create interactive and impactful digital experiences.</p>
-        <p class="section-text">I recently completed undergrad at The University of Washington where I studied Computer Science & Applied Mathematics.</p>
-        <p class="section-text">I'm currently looking for engineering roles! Keep scrolling to see what I've been working on lately.</p>
-      </div>
-    </section>
-
-    <div class="second-move section-margin"></div>
-
-    <section class="second-section section right">
-      <div class="progress-wrapper progress-bar-wrapper-right">
-        <div class="progress-bar blue-background"></div>
-      </div>
-
-      <div class="section-intro-wrapper blue-text blue-border">
-        <h1 class="section-title blue-text blue-border">
-          <span class="section-title-text blue-text">Ghost Pacer</span>
-<!--          <div class="section-title-decoration styleOne blue-border"></div>-->
-<!--          <div class="section-title-decoration styleTwo blue-border"></div>-->
-<!--          <div class="section-title-decoration styleThree blue-background blue-border"></div>-->
-        </h1>
-        <span class="section-number blue-text">02</span>
-      </div>
-
-      <div class="section-detail-wrapper">
-        <h3 class="section-heading">What is it?</h3>
-        <p class="section-text">Ghost Pacer is a Techstars-backed startup that ran one of the most successful (top 1%) crowdfunding campaigns in history for custom augmented reality glasses designed for runners.</p>
-        <h3 class="section-heading">My Role</h3>
-        <p class="section-text">I spent 2 years at Ghost Pacer working on </p>
-        <h3 class="section-heading">Interested?</h3>
-        <p class="section-text">Learn more about the project and my contributions here.</p>
-<!--        <p class="section-text">Oh what's that? Why, it's a red radish! Oop, another one! In this playful and comedy animation, Rebecca, a young farmer, decided to plant radishes for the first time, but there is a big twist!</p>-->
-<!--        <h3 class="section-heading">Flora</h3>-->
-<!--        <p class="section-text">A heartwarming story about a little orphan girl who tries to find her way back home.</p>-->
-      </div>
-    </section>
-
-    <div class="third-move section-margin"></div>
-
-    <section class="third-section section left">
-      <div class="progress-wrapper progress-bar-wrapper-left">
-        <div class="progress-bar green-background"></div>
-      </div>
-
-      <div class="section-intro-wrapper green-text green-border">
-        <h1 class="section-title green-text green-border">
-          <span class="section-title-text green-text">Let's Connect!</span>
-<!--          <div class="section-title-decoration styleOne green-border"></div>-->
-<!--          <div class="section-title-decoration styleTwo green-border"></div>-->
-<!--          <div class="section-title-decoration styleThree green-background green-border"></div>-->
-        </h1>
-        <span class="section-number green-text">03</span>
-
-      </div>
-      <div class="section-detail-wrapper">
-        <h3 class="section-heading">My Socials</h3>
-        <p class="section-text">Github | LinkedIn | Behance | Medium </p>
-        <div id="contact-container">
-          <!--Form Container-->
-          <div id="contact-form-container" class="column contact-container">
-            <div id="contact-name-input" class="input-container column">
-              <div class="row">
-                <label for="contact-name-input-field">Name :</label>
-                <span class="error-label hide">Please enter your name.</span>
-              </div>
-              <input id="contact-name-input-field" tabindex="-1">
-            </div>
-            <div id="contact-email-input" class="input-container column">
-              <div class="row">
-                <label for="contact-email-input-field">Email :</label>
-                <span class="error-label hide">Please enter a valid email address.</span>
-              </div>
-              <input id="contact-email-input-field" type="email" tabindex="-1">
-            </div>
-            <div id="contact-message-input" class="input-container column">
-              <div class="row">
-                <label for="contact-message-input-field">Message :</label>
-                <span class="error-label hide">Please enter your message.</span>
-              </div>
-              <textarea id="contact-message-input-field" tabindex="-1"></textarea>
-            </div>
-            <div class="row" id="contact-button-container">
-              <!--Social Icons-->
-                          <a tabindex="-1" target="_blank" href="https://twitter.com/grace.raper"><img class="social-icon"
-                                                                                                     src="/icons/twitter-icon.png" alt="twitter contact social icon small 28x28"
-                                                                                                     height="28" width="28"></a>
-                          <a tabindex="-1" target="_blank" href="https://github.com/grace-raper"><img class="social-icon"
-                                                                                                    alt="github contact social icon small 28x28" height="28" width="28"
-                                                                                                    src="/icons/github-icon.png"></a>
-                          <a tabindex="-1" target="_blank" href="https://www.linkedin.com/in/graceraper/">
-                            <img class="social-icon " alt="linkedin contact social icon small 28x28" height="28"
-                                 width="28" src="/icons/linkedin-icon.png"></a>
-                          <a tabindex="-1" href="mailto:graceraper@gmail.com"> <img class="social-icon"
-                                                                                        alt="email contact social icon small 28x28" height="28" width="28"
-                                                                                        src="/icons/mail-icon.png"></a>
-              Submit Button
-              <div id="contact-submit-button" class="small-button orange-hover">
-                Submit
-              </div>
-            </div>
-          </div>
-          Loading Container
-                  <div id="contact-loading-container" class="center contact-container hide">
-                    <h4>Delivering...</h4>
-                  </div>
-
-                  <!--Result Container-->
-                  <div id="contact-result-container" class="contact-container column center hide">
-                    <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-                      <polyline id="contact-success-line" class="hide" stroke="#A1CC4D" points="10,70 40,100 115,20">
-                      </polyline>
-                      <line stroke="rgb(216, 84, 84)" class="contact-error-line" x1="5" y1="5" x2="115" y2="115">
-                      </line>
-                      <line stroke="rgb(216, 84, 84)" class="contact-error-line" x1="115" y1="5" x2="5" y2="115">
-                      </line>
+                <!-- Intro Stuff -->
+                <div class="intro-text">Hello!</div>
+                <div class="arrow-svg-wrapper">
+                    <svg height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 14.95q-.2 0-.375-.063-.175-.062-.325-.212L6.675 10.05q-.275-.275-.262-.688.012-.412.287-.687.275-.275.7-.275.425 0 .7.275l3.9 3.9 3.925-3.925q.275-.275.688-.263.412.013.687.288.275.275.275.7 0 .425-.275.7l-4.6 4.6q-.15.15-.325.212-.175.063-.375.063Z"
+                              fill="currentColor"/>
                     </svg>
-                    <div id="contact-result-message-container" class="center column">
+                </div>
 
+                <div class="hero-main">
+                    <h1 class="hero-main-title">Grace Raper</h1>
+                    <p class="hero-main-description">XR Software Engineer</p>
+                </div>
+
+                <div class="hero-second">
+                    <p class="hero-second-subheading first-sub">Digital</p>
+                    <p class="hero-second-subheading second-sub">Portfolio</p>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="first-move section-margin"></div>
+
+        <section class="first-section section left">
+            <div class="progress-wrapper progress-bar-wrapper-left">
+                <div class="progress-bar"></div>
+            </div>
+
+            <div class="section-intro-wrapper">
+                <h1 class="section-title">
+                    <span class="section-title-text">About Me</span>
+                </h1>
+                <span class="section-number">01</span>
+            </div>
+
+
+            <div class="section-detail-wrapper">
+                <h3 class="section-heading">Hi there, I'm Grace! 👋</h3>
+                <p class="section-text">I'm a XR software engineer with a passion for leveraging emerging technologies
+                    to create interactive and impactful digital experiences.</p>
+                <p class="section-text">I'm currently looking for engineering roles! Keep scrolling to see what I've
+                    been working on lately.</p>
+<!--                <h3 class="section-heading">Tools & Technologies </h3>-->
+<!--                <p class="section-text">Languages: Go (Golang), Java, Python, C#, Swift, JavaScript, HTML/CSS</p>-->
+<!--                <p class="section-text">AR/VR Platforms & Frameworks: Unity, ARKit, ARCore, SparkAR, Effect House, Lens Studio, Adobe Aero</p>-->
+<!--                <p class="section-text">Libraries & APIs: WebGL, three.js</p>-->
+<!--                <p class="section-text">Digital Content Creation: Blender, Substance 3D Suite, Illustrator, Photoshop</p>-->
+<!--                <p class="section-text">Industry Tools: Git, Docker, Firebase</p>-->
+            </div>
+        </section>
+
+        <div class="second-move section-margin"></div>
+
+        <section class="second-section section right">
+            <div class="progress-wrapper progress-bar-wrapper-right">
+                <div class="progress-bar blue-background"></div>
+            </div>
+
+            <div class="section-intro-wrapper blue-text blue-border">
+                <h1 class="section-title blue-text blue-border">
+                    <span class="section-title-text blue-text">Ghost Pacer</span>
+                </h1>
+                <span class="section-number blue-text">02</span>
+            </div>
+
+            <div class="section-detail-wrapper">
+                <h3 class="section-heading">What is it?</h3>
+                <p class="section-text">Ghost Pacer is a Techstars-backed startup that ran one of the most successful
+                    (top 1%) crowdfunding campaigns in history for custom augmented reality glasses designed for
+                    runners.</p>
+                <h3 class="section-heading">My Role</h3>
+                <p class="section-text">I spent 2 years as Lead Software Engineer at Ghost Pacer.
+                    To learn more about my contributions, check out the <a href="/ghost-pacer/index.html"> project page</a>! []</p>
+                <p class="section-text">
+                    <button class="button-33" role="button">Go (Golang)</button>
+                    <button class="button-33" role="button">Java</button>
+                    <button class="button-33" role="button">Python</button>
+                    <button class="button-33" role="button">Go (Golang)</button>
+                    <button class="button-33" role="button">Java</button>
+                    <button class="button-33" role="button">Python</button>
+                    <button class="button-33" role="button">Go (Golang)</button>
+                    <button class="button-33" role="button">Java</button>
+                    <button class="button-33" role="button">Python</button>
+                </p>
+<!--                <h3 class="section-heading">Interested?</h3>-->
+<!--                <p class="section-text">Learn more about the project and my contributions here.</p>-->
+            </div>
+        </section>
+
+        <div class="third-move section-margin"></div>
+
+        <section class="third-section section left">
+            <div class="progress-wrapper progress-bar-wrapper-left">
+                <div class="progress-bar"></div>
+            </div>
+
+            <div class="section-intro-wrapper">
+                <h1 class="section-title">
+                    <span class="section-title-text">Caspir Cam</span>
+                </h1>
+                <span class="section-number">03</span>
+            </div>
+
+
+            <div class="section-detail-wrapper">
+                <h3 class="section-heading">What is it?</h3>
+                <p class="section-text">CaspirCam is an iOS app that empowers people to compose photos like a pro.
+                    Using Augmented Reality and Computer Vision, CaspirCam guides user's in real-time to set up shots
+                    that follow the composition principals used by world-class photographers.</p>
+                <p class="section-text">Already have an inspiration photo?
+                   Upload your reference image and let CaspirCam help you recreate it!</p>
+                <h3 class="section-heading">My Role</h3>
+                <p class="section-text">I conceptualized, designed & built the whole CaspirCam experience myself!</p>
+                <p class="section-text">Learn more about the app & test it out here. [->]</p>
+                <p class="section-text">
+                <button class="button-33" role="button">Go (Golang)</button>
+                <button class="button-33" role="button">Java</button>
+                <button class="button-33" role="button">Python</button>
+                <button class="button-33" role="button">Go (Golang)</button>
+                <button class="button-33" role="button">Java</button>
+                <button class="button-33" role="button">Python</button>
+                <button class="button-33" role="button">Go (Golang)</button>
+                <button class="button-33" role="button">Java</button>
+                <button class="button-33" role="button">Python</button>
+                </p>
+            </div>
+        </section>
+
+        <div class="fourth-move section-margin"></div>
+        <section class="first-section section right">
+            <div class="progress-wrapper progress-bar-wrapper-right">
+                <div class="progress-bar blue-background"></div>
+            </div>
+
+            <div class="section-intro-wrapper blue-text blue-border">
+                <h1 class="section-title blue-text blue-border">
+                    <span class="section-title-text blue-text">Smaller Projects</span>
+                </h1>
+                <span class="section-number blue-text">04</span>
+            </div>
+
+            <div class="section-detail-wrapper">
+                <h3 class="section-heading">AR Game</h3>
+                <p class="section-text">Built with Unity, this game .... loreum ipsum. Learn more [here].</p>
+                <p class="section-text">Tools</p>
+                <h3 class="section-heading">VR Game</h3>
+                <p class="section-text">Built with Unreal, this game .... loreum ipsum. Check it out [here].</p>
+                <p class="section-text">Tools</p>
+                <h3 class="section-heading">AR Filters</h3>
+                <p class="section-text">I've designed dozens of AR filters for social media platforms. I have experience in Effect House, Meta SparkAR, and Lens Studio. Try them out [here].</p>
+                <p class="section-text">Tools: </p>
+            </div>
+        </section>
+
+
+
+        <div class="fifth-move section-margin"></div>
+        <section class="second-section section left">
+            <div class="progress-wrapper progress-bar-wrapper-left">
+                <div class="progress-bar green-background"></div>
+            </div>
+
+            <div class="section-intro-wrapper green-text green-border">
+                <h1 class="section-title green-text green-border">
+                    <span class="section-title-text green-text">Explore</span>
+                </h1>
+                <span class="section-number green-text">05</span>
+
+            </div>
+            <div class="section-detail-wrapper">
+                <h3 class="section-heading">Continue this Experience in AR!</h3>
+                <p class="section-text">Exploring my office space in AR. Tap on objects in the scene to learn more about me!</p>
+                <a href="https://adobeaero.app.link/K63pnCOlHCb" tabindex="-1" target="_blank"><img
+                        alt="twitter contact social icon small 28x28"
+                        class="social-icon" height="1024"
+                        src="/icons/AeroQrCode.png" width="1024"></a>
+                <p class="section-text">tools:</p>
+            </div>
+
+        </section>
+
+
+        <div class="sixth-move section-margin"></div>
+
+        <section class="third-section section right">
+            <div class="progress-wrapper progress-bar-wrapper-right">
+                <div class="progress-bar blue-background"></div>
+            </div>
+
+            <div class="section-intro-wrapper blue-text blue-border">
+                <h1 class="section-title blue-text blue-border">
+                    <span class="section-title-text blue-text">Looking For More?</span>
+                </h1>
+                <span class="section-number blue-text">02</span>
+            </div>
+            <div class="section-detail-wrapper">
+                <h3 class="section-heading">Additional Projects</h3>
+                <p class="section-text">Check out some of my work outside the XR space. Search my project experience [here].</p>
+                <h3 class="section-heading">Get in Touch!</h3>
+                <div id="contact-container">
+                    <!--Form Container-->
+                    <div class="column contact-container" id="contact-form-container">
+                        <div class="input-container column" id="contact-name-input">
+                            <div class="row">
+                                <label for="contact-name-input-field">Name :</label>
+                                <span class="error-label hide">Please enter your name.</span>
+                            </div>
+                            <input id="contact-name-input-field" tabindex="-1">
+                        </div>
+                        <div class="input-container column" id="contact-email-input">
+                            <div class="row">
+                                <label for="contact-email-input-field">Email :</label>
+                                <span class="error-label hide">Please enter a valid email address.</span>
+                            </div>
+                            <input id="contact-email-input-field" tabindex="-1" type="email">
+                        </div>
+                        <div class="input-container column" id="contact-message-input">
+                            <div class="row">
+                                <label for="contact-message-input-field">Message :</label>
+                                <span class="error-label hide">Please enter your message.</span>
+                            </div>
+                            <textarea id="contact-message-input-field" tabindex="-1"></textarea>
+                        </div>
+                        <div class="row" id="contact-button-container">
+                            <!--Social Icons-->
+                            <a href="https://twitter.com/grace.raper" tabindex="-1" target="_blank"><img
+                                    alt="twitter contact social icon small 28x28"
+                                    class="social-icon" height="64"
+                                    src="/icons/twitter-icon.png" width="64"></a>
+                            <a href="https://github.com/grace-raper" tabindex="-1" target="_blank"><img
+                                    alt="github contact social icon small 28x28"
+                                    class="social-icon" height="64" src="/icons/github-icon.png"
+                                    width="64"></a>
+                            <a href="https://www.linkedin.com/in/graceraper/" tabindex="-1" target="_blank">
+                                <img alt="linkedin contact social icon small 28x28" class="social-icon " height="64"
+                                     src="/icons/linkedin-icon.png" width="64"></a>
+                            <a href="mailto:graceraper@gmail.com" tabindex="-1"> <img alt="email contact social icon small 28x28"
+                                                                                      class="social-icon"
+                                                                                      height="64" src="/icons/mail-icon.png"
+                                                                                      width="64"></a>
+                            <!--              Submit Button-->
+                            <div class="small-button orange-hover" id="contact-submit-button">
+                                Submit
+                            </div>
+                        </div>
                     </div>
-                    <div class="small-button orange-hover" id="contact-result-button"></div>
-                  </div>
+                </div>
+            </div>
+            Insert legal stuff here?
+        </section>
 
-        </div>
-      </div>
-
-    </section>
-
-    <section id="contact-section" class="content-width column">
-
-    </section>
-
-    <div class="second-move section-margin"></div>
-
-    <section class="second-section section right">
-      <div class="progress-wrapper progress-bar-wrapper-right">
-        <div class="progress-bar blue-background"></div>
-      </div>
-
-      <div class="section-intro-wrapper blue-text blue-border">
-        <h1 class="section-title blue-text blue-border">
-          <span class="section-title-text blue-text">My Work</span>
-          <!--          <div class="section-title-decoration styleOne blue-border"></div>-->
-          <!--          <div class="section-title-decoration styleTwo blue-border"></div>-->
-          <!--          <div class="section-title-decoration styleThree blue-background blue-border"></div>-->
-        </h1>
-        <span class="section-number blue-text">02</span>
-      </div>
-
-      <div class="section-detail-wrapper">
-        <h3 class="section-heading">Candycane Village</h3>
-        <p class="section-text">This project is in progress but it's about a super colorful village where the entire world including the people are candies. So far the story is that they are set out to explore their "space" only to realize it's a human that will try to destroy them.</p>
-        <h3 class="section-heading">Rebecca's Reddish Radishes</h3>
-        <p class="section-text">Oh what's that? Why, it's a red radish! Oop, another one! In this playful and comedy animation, Rebecca, a young farmer, decided to plant radishes for the first time, but there is a big twist!</p>
-        <h3 class="section-heading">Flora</h3>
-        <p class="section-text">A heartwarming story about a little orphan girl who tries to find her way back home.</p>
-      </div>
-    </section>
-
-  </div>
+    </div>
 </div>
-<script type="module" src="/main.js"></script>
+<script src="/main.js" type="module"></script>
 </body>
 </html>

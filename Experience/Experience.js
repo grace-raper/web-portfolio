@@ -24,7 +24,10 @@ export default class Experience {
         this.scene = new THREE.Scene();
         this.time = new Time();
         this.sizes = new Sizes();
+        console.log(this.sizes.height)
+        console.log(this.sizes.width)
         this.camera = new Camera();
+        //console.log(this.camera.)
         this.renderer = new Renderer();
         this.resources = new Resources(assets);
         this.theme = new Theme();

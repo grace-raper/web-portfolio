@@ -1,0 +1,43 @@
+{
+  "room": {
+    "position": {
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "ease": "power1.out"
+    }
+  },
+  "cube": {
+    "rotation": {
+      "y": 7.85
+    },
+    "scale": {
+      "x": 10,
+      "y": 10,
+      "z": 10
+    },
+    "position": {
+      "x": 0.638711,
+      "y": 8.5618,
+      "z": 1.3243
+    },
+    "finalScale": {
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "duration": 1
+    }
+  },
+  "camera": {
+    "position": {
+      "y": 6.5
+    }
+  },
+  "body": {
+    "scale": {
+      "x": 1,
+      "y": 1,
+      "z": 1
+    }
+  }
+}

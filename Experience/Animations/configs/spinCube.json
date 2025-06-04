@@ -9,7 +9,8 @@
   },
   "cube": {
     "rotation": {
-      "y": 7.85
+      "y": 7.068,
+      "duration": 1.5
     },
     "scale": {
       "x": 10,
@@ -25,7 +26,13 @@
       "x": 0,
       "y": 0,
       "z": 0,
-      "duration": 1
+      "duration": 0.5,
+      "ease": "power2.out"
+    },
+    "opacity": {
+      "value": 0,
+      "duration": 0.5,
+      "ease": "power2.out"
     }
   },
   "camera": {
@@ -38,6 +45,11 @@
       "x": 1,
       "y": 1,
       "z": 1
+    },
+    "opacity": {
+      "value": 1,
+      "duration": 0.5,
+      "ease": "power2.in"
     }
   }
 }

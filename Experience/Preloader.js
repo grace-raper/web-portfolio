@@ -97,44 +97,18 @@ export default class Preloader extends EventEmitter {
         return roomLoadAnimation.animate();
     }
 
-    onScroll(e) {
-        if (e.deltaY > 0) {
-            this.removeEventListeners();
-            this.playSecondIntro();
-        }
-    }
-
-    onTouch(e) {
-        this.initalY = e.touches[0].clientY;
-    }
-
-    onTouchMove(e) {
-        let currentY = e.touches[0].clientY;
-        let difference = this.initalY - currentY;
-        if (difference > 0) {
-            console.log("swipped up");
-            this.removeEventListeners();
-            this.playSecondIntro();
-        }
-        this.intialY = null;
-    }
-
-    removeEventListeners() {
-        window.removeEventListener("wheel", this.scrollOnceEvent);
-        window.removeEventListener("touchstart", this.touchStart);
-        window.removeEventListener("touchmove", this.touchMove);
-    }
+    // Event listener methods removed as we're now auto-transitioning between animations
 
     async playIntro() {
         this.scaleFlag = true;
         await this.firstIntro();
         this.moveFlag = true;
-        this.scrollOnceEvent = this.onScroll.bind(this);
-        this.touchStart = this.onTouch.bind(this);
-        this.touchMove = this.onTouchMove.bind(this);
-        window.addEventListener("wheel", this.scrollOnceEvent);
-        window.addEventListener("touchstart", this.touchStart);
-        window.addEventListener("touchmove", this.touchMove);
+        
+        // Automatically proceed to second intro after a short delay
+        // instead of waiting for scroll event
+        setTimeout(() => {
+            this.playSecondIntro();
+        }, 1000); // 1 second delay before auto-transitioning
     }
     async playSecondIntro() {
         this.moveFlag = false;

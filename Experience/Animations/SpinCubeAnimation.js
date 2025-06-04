@@ -50,12 +50,34 @@ export default class SpinCubeAnimation {
                     this.config.cube.position,
                     "same"
                 )
-                .set(this.roomChildren.body.scale, this.config.body.scale)
+                // Make body appear immediately with set instead of to
+                .set(
+                    this.roomChildren.body.scale,
+                    {
+                        x: this.config.body.scale.x,
+                        y: this.config.body.scale.y,
+                        z: this.config.body.scale.z
+                    }
+                )
+                
+                // Fix cube scaling with proper x, y, z properties
                 .to(
                     this.roomChildren.cube.scale,
-                    this.config.cube.finalScale,
+                    {
+                        x: this.config.cube.finalScale.x,
+                        y: this.config.cube.finalScale.y,
+                        z: this.config.cube.finalScale.z,
+                        duration: this.config.cube.finalScale.duration,
+                        ease: this.config.cube.finalScale.ease || "power2.out",
+                        onComplete: () => {
+                            // Hide the cube immediately when scaling finishes
+                            this.roomChildren.cube.visible = false;
+                        }
+                    },
                     "introtext"
                 )
+                
+                // Final animation with immediate hiding of cube
                 .eventCallback("onComplete", resolve);
                 
             return this.timeline;

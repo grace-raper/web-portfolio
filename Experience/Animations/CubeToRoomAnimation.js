@@ -57,19 +57,8 @@ export default class CubeToRoomAnimation {
             // Common final animations
             this.timeline
                 .to(".intro-text .animatedis", this.config.introText)
-                .to(
-                    ".arrow-svg-wrapper",
-                    this.config.arrowWrapper,
-                    "same"
-                )
-                .to(
-                    ".toggle-bar",
-                    {
-                        ...this.config.toggleBar,
-                        onComplete: resolve,
-                    },
-                    "same"
-                );
+                .eventCallback("onComplete", resolve);
+
         });
     }
 }

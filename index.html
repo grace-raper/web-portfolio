@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+    <meta charset="UTF-8">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, target-densityDpi=device-dpi, minimal-ui'
           name='viewport'/>
     <title>Grace Raper</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- React and ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body class="light-theme">
 <div class="experience">
@@ -58,7 +63,7 @@
 
                 <div class="hero-main">
                     <h1 class="hero-main-title">Grace Raper</h1>
-                    <p class="hero-main-description">XR Software Engineer</p>
+                    <p class="hero-main-description">Software Engineer</p>
                 </div>
 
                 <div class="hero-second">
@@ -88,7 +93,7 @@
                 <h3 class="section-heading">Hi there, I'm Grace! 👋</h3>
                 <p class="section-text">I'm a XR software engineer with a passion for leveraging emerging technologies
                     to create interactive and impactful digital experiences.</p>
-                <p class="section-text">I'm currently looking for engineering roles! Keep scrolling to see what I've
+                <p class="section-text">I'm currently looking for engineering or product management roles in the AR/VR space! Keep scrolling to see what I've
                     been working on lately.</p>
 <!--                <h3 class="section-heading">Tools & Technologies </h3>-->
 <!--                <p class="section-text">Languages: Go (Golang), Java, Python, C#, Swift, JavaScript, HTML/CSS</p>-->
@@ -114,17 +119,32 @@
             </div>
 
             <div class="section-detail-wrapper">
-                <h3 class="section-heading">What is it?</h3>
-                <p class="section-text">Ghost Pacer is a Techstars-backed startup that ran one of the most successful
-                    (top 1%) crowdfunding campaigns in history for custom augmented reality glasses designed for
-                    runners.</p>
-                <h3 class="section-heading">My Role</h3>
-                <p class="section-text">I spent 2 years as Lead Software Engineer at Ghost Pacer.
-                    To learn more about my contributions, check out the <a href="/ghost-pacer/index.html"> project page</a>!</p>
+                <!-- <h3 class="section-heading">What is it?</h3> -->
                 <p class="section-text">
+                    Ghost Pacer is AR-Fitness startup that produced custom augmented reality glasses for outdoor applications. 
+                    While I was there, we grew to seven figures in annual revenue & received funding from Techstars before being bought by Peloton in 2024.
+                </p>
+                <p class="section-text">
+                    I served as both COO & Lead Software Engineer. 
+                    My primary focus was on designing and engineering a lightweight AR fitness experience 
+                    that combined multi-sensor data (GPS, IMU, biometrics) to create a responsive virtual running partner 
+                    that adapts to the user's environment and performance.
+                </p>
+                <p class="section-text">
+                    This software was highly optimized to run on lightweight hardware while processing complex 
+                    spatial calculations and managing connectivity with multiple Bluetooth peripherals 
+                    (including watches, heart rate monitors, and mobile devices).
+                </p>
+                <p class="section-text">
+                    Check out the <a href="https://www.ghostpacer.com"> website</a> to learn more!
+                </p>
+                
+                <div class="video-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/NwLR6PxECCg" title="Meet the Ghost Pacer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <p class="tech-tags">
                     <button class="button-33" role="button">AR/VR Headsets</button>
                     <button class="button-33" role="button">Go (Golang)</button>
-
                     <button class="button-33" role="button">GPS/Location Data</button>
                     <button class="button-33" role="button">IMU Data</button>
                     <button class="button-33" role="button">3D Math</button>
@@ -136,8 +156,7 @@
                     <button class="button-33" role="button">C++</button>
                     <button class="button-33" role="button">Unity</button>
                 </p>
-<!--                <h3 class="section-heading">Interested?</h3>-->
-<!--                <p class="section-text">Learn more about the project and my contributions here.</p>-->
+                
             </div>
         </section>
 
@@ -150,29 +169,34 @@
 
             <div class="section-intro-wrapper">
                 <h1 class="section-title">
-                    <span class="section-title-text">Caspir Cam</span>
+                    <span class="section-title-text">SortMyShoebox</span>
                 </h1>
                 <span class="section-number">03</span>
             </div>
 
 
             <div class="section-detail-wrapper">
-                <h3 class="section-heading">What is it?</h3>
-                <p class="section-text">CaspirCam is an iOS app that empowers people to compose photos like a pro.
-                    Using Augmented Reality and Computer Vision, CaspirCam guides user's in real-time to set up shots
-                    that follow the composition principals used by world-class photographers.</p>
-<!--                <p class="section-text">Already have an inspiration photo?-->
-<!--                   Upload your reference image and let CaspirCam help you recreate it!</p>-->
-                <h3 class="section-heading">My Role</h3>
-                <p class="section-text">I conceptualized, designed & built the whole CaspirCam experience myself!
-                    Learn more about the app & test it out <a href="/caspir-cam/index.html">here</a>.</p>
                 <p class="section-text">
-                    <button class="button-33" role="button">Swift</button>
-                    <button class="button-33" role="button">ARKit</button>
-                    <button class="button-33" role="button">Vision Framework</button>
-                    <button class="button-33" role="button">CoreML</button>
-                    <button class="button-33" role="button">SwiftUI</button>
-                    <button class="button-33" role="button">Objective-C</button>
+                    SortMyShoebox is an AI-powered platform I founded in 2024 that transforms how families organize and preserve their photographic memories. Using advanced computer vision and machine learning, it turns the overwhelming task of sorting old family photos into a simple, enjoyable experience.
+                </p>
+                <p class="section-text">
+                    As founder and lead developer, I designed and built the entire platform from the ground up. The software automatically tags family members, estimates photo dates, groups related images, and generates meaningful captions to preserve the stories behind each moment.
+                </p>
+                <p class="section-text">
+                    This technology bridges generations by making family history accessible and organized, helping users rediscover their legacy and connect with their roots in ways that weren't possible before.
+                    Check out the <a href="https://sortmyshoebox.com">website</a> to learn more and create an account!
+                </p>
+                <p class="tech-tags">
+                    <button class="button-33" role="button">LLMs</button>
+                    <button class="button-33" role="button">Computer Vision</button>
+                    <button class="button-33" role="button">TypeScript</button>
+                    <button class="button-33" role="button">React</button>
+                    <button class="button-33" role="button">AWS</button>
+                    <button class="button-33" role="button">S3</button>
+                    <button class="button-33" role="button">REST APIs</button>
+                    <button class="button-33" role="button">Machine Learning</button>
+                    <button class="button-33" role="button">Python</button>
+                    <button class="button-33" role="button">Node.js</button>
                 </p>
             </div>
         </section>
@@ -185,36 +209,36 @@
 
             <div class="section-intro-wrapper blue-text blue-border">
                 <h1 class="section-title blue-text blue-border">
-                    <span class="section-title-text blue-text">Smaller Projects</span>
+                    <span class="section-title-text blue-text">Remme</span>
                 </h1>
                 <span class="section-number blue-text">04</span>
             </div>
 
             <div class="section-detail-wrapper">
-                <h3 class="section-heading">AR Game</h3>
-                <p class="section-text">Built with Unity, this game .... loreum ipsum. Learn more [here].</p>
                 <p class="section-text">
-                    <button class="button-33" role="button">Unity</button>
-                    <button class="button-33" role="button">C#</button>
-                    <button class="button-33" role="button">Blender</button>
+                    Remme is an AI-powered reminiscence therapy platform I founded to revolutionize memory care for people living with dementia and cognitive decline. Using artificial intelligence, Remme delivers personalized therapy by engaging users with their own life stories and memories.
                 </p>
-                <h3 class="section-heading">VR Game</h3>
-                <p class="section-text">Built with Unreal, this game .... loreum ipsum. Check it out [here].</p>
                 <p class="section-text">
-                    <button class="button-33" role="button">Unreal</button>
-                    <button class="button-33" role="button">C++</button>
-                    <button class="button-33" role="button">Blender</button>
+                    As founder and lead developer, I designed Remme to function like a FaceTime call while browsing a family photo album. The AI companion guides users through meaningful memories, adapting in real-time to their responses and engagement levels, providing unlimited, judgment-free companionship whenever needed.
                 </p>
-                <h3 class="section-heading">AR Filters</h3>
-                <p class="section-text">I've designed dozens of AR filters for social media platforms. I have experience in Effect House, Meta SparkAR, and Lens Studio. Try them out [here].</p>
                 <p class="section-text">
-                    <button class="button-33" role="button">SparkAR</button>
-                    <button class="button-33" role="button">Effect House</button>
-                    <button class="button-33" role="button">Lens Studio</button>
-                    <button class="button-33" role="button">Unity</button>
-                    <button class="button-33" role="button">Blender</button>
-                    <button class="button-33" role="button">Photoshop</button>
-                    <button class="button-33" role="button">Lightroom</button>
+                    Remme helps reduce feelings of depression and isolation, improves mood and life satisfaction, and preserves users' sense of identity and dignity. For families, it creates deeper connections despite memory challenges and provides peace of mind when unable to visit in person.
+                    Check out the <a href="https://tryremme.com">website</a> to learn more!
+                </p>
+                
+                <div class="video-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/YOUR_REMME_DEMO_VIDEO_ID" title="Remme Sample Session" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <!-- Replace YOUR_REMME_DEMO_VIDEO_ID with the actual YouTube video ID for your Remme demo -->
+                </div>
+                <p class="tech-tags">
+                    <button class="button-33" role="button">AI</button>
+                    <button class="button-33" role="button">Machine Learning</button>
+                    <button class="button-33" role="button">React</button>
+                    <button class="button-33" role="button">Node.js</button>
+                    <button class="button-33" role="button">WebRTC</button>
+                    <button class="button-33" role="button">Healthcare</button>
+                    <button class="button-33" role="button">UX Design</button>
+                    <button class="button-33" role="button">Python</button>
                 </p>
             </div>
         </section>
@@ -229,31 +253,146 @@
 
             <div class="section-intro-wrapper green-text green-border">
                 <h1 class="section-title green-text green-border">
-                    <span class="section-title-text green-text">Explore</span>
+                    <span class="section-title-text green-text">More Projects</span>
                 </h1>
                 <span class="section-number green-text">05</span>
-
             </div>
+            
             <div class="section-detail-wrapper">
-                <h3 class="section-heading">Continue this Experience in AR!</h3>
-                <p class="section-text">Exploring my office space in AR. Tap on objects in the scene to learn more about me!
-                    Note: iOS / Android phone required to view. Demo video available <a href="/caspir-cam/index.html">here</a>. </p>
-                <p class="section-text">
-                <a href="https://adobeaero.app.link/K63pnCOlHCb"><img
-                        src="/icons/adobe-express-qr-code.png" alt="QR Code to Adobe Aero Experience" class="center">
-                </a>
-                </p>
-                <h3 class="section-heading">About this Portfolio:</h3>
-                <p class="section-text">The structure of this portfolio was highly influenced by bokoko's award winning portfolio as while as xyz's tutorials on creating interactive 3D website. The ability to further explore my office space in AR was an original idea.</p>
-                <p class="section-text">
-                <button class="button-33" role="button">Javascript</button>
-                <button class="button-33" role="button">Three.js/WebGL</button>
-                <button class="button-33" role="button">HTLM/CSS</button>
-                <button class="button-33" role="button">Blender</button>
-                <button class="button-33" role="button">Adobe Aero</button>
-                </p>
-            </div>
+                <div class="projects-list">
+                    <!-- Project 1 -->
+                    <div class="project-item">
+                        <h3 class="section-heading">Rotary Dial Jukebox</h3>
+                        <p class="section-text">
+                            I'm retrofitting a vintage rotary dial telephone into a modern jukebox and Bluetooth headset. 
+                            Users can add songs to their Apple Music/Spotify queue by dialing a 3-digit code from a songbook.
+                            The phone also functions as a Bluetooth headset, allowing users to make and receive calls from their smartphone through the classic rotary handset.
+                        </p>
+                        <p class="section-text">
+                            Coming in July: follow my step-by-step build guide on <a href="https://medium.com/@graceiraper" class="project-link">Medium</a> to create your own.
+                        </p>
+                        <p class="tech-tags">
+                            <span class="button-33">Microcontrollers</span>
+                            <span class="button-33">iOS App Development</span>
+                            <span class="button-33">BLE / Bluetooth</span>
+                            <span class="button-33">Audio Engineering</span>
 
+                        </p>
+                    </div>
+                    
+                    <hr class="project-divider">
+                    
+                    <!-- Project 2 -->
+                    <div class="project-item">
+                        <h3 class="section-heading">CaspirCam</h3>
+                        <p class="section-text">
+                            CaspirCam is an iOS app I built that uses AR technology to empowers users to improve their photos. 
+                            By selecting a template pose or uploading an inspiration photo, users can view a virtual guide to replicate the pose in real-time. 
+                            The app provides audio and visual feedback to help coach users as they adjust their posture and facial expression, ensuring they look their best. 
+                            CoreML and the iPhone’s camera work together to analyze body alignment and offer precise step-by-step guidance.
+                        </p>
+                        <p class="section-text">
+                            View the product <a href="/caspircam" class="project-link">website</a> to learn more! 
+                        </p>
+                        <p class="tech-tags">
+                            <span class="button-33">Swift</span>
+                            <span class="button-33">ARKit</span>
+                            <span class="button-33">Vision Framework</span>
+                            <span class="button-33">CoreML</span>
+                        </p>
+                    </div>
+                    
+                    <hr class="project-divider">
+                    
+                    <!-- Project 3 -->
+                    <div class="project-item">
+                        <h3 class="section-heading">Redlining Data Visualization Framework</h3>
+                        <p class="section-text">
+                            Created a web-based visualization frameworks that enables users to explore the relationship between historical redlining maps and current-day census data.
+                        </p>
+                        <p class="section-text">
+                            Some sources of inspiration for this project include the New York Times "How Decades of Racist Housing Policy Left Neighborhoods Sweltering" Article published in 2020 by Brad Plumer and Nadja Popovich as well as the "Mapping Inequalities Project: Redlining in New Deal America" out of the Digital Scholarship Lab at the University of Virginia.
+                        </p>
+                        <p class="section-text">
+                            Check it out: <a href="https://grace-raper.github.io/redviz/" class="project-link">Mapping The Lasting Effects of Redlining</a>
+                        </p>
+                        <p class="tech-tags">
+                            <span class="button-33">JavaScript</span>
+                            <span class="button-33">D3</span>
+                            <span class="button-33">Data Visualization</span>
+                            <span class="button-33">Interaction Design</span>
+                        </p>
+                    </div>
+                    
+                    <hr class="project-divider">
+                    
+                    <!-- Project 4 -->
+                    <div class="project-item">
+                        <h3 class="section-heading">NFL Football Pickem's</h3>
+                        <p class="section-text">
+                            A Python project that helps determine football picks using sports odds APIs and Twilio's SMS service with GitHub Actions.
+                        </p>
+                        <p class="section-text">
+                            <a href="https://github.com/grace-raper/pickems" class="project-link">View on GitHub</a>
+                        </p>
+                        <p class="tech-tags">
+                            <span class="button-33">Python</span>
+                            <span class="button-33">Twilio API</span>
+                            <span class="button-33">GitHub Actions</span>
+                            <span class="button-33">REST APIs</span>
+                        </p>
+                    </div>
+                    
+                    <hr class="project-divider">
+                    
+                    <!-- Project 5 -->
+                    <div class="project-item">
+                        <h3 class="section-heading">Marker Based AR-Model Viewer</h3>
+                        <p class="section-text">
+                            Built with Unity, this iOS/Android application allows users to scan QR codes to display interactive 3D models in augmented reality.
+                        </p>
+                        <p class="section-text">
+                            <a href="https://youtube.com/shorts/__Hw0zrMjFw?feature=share" class="project-link">Watch demo</a>
+                        </p>
+                        <p class="tech-tags">
+                            <span class="button-33">Unity</span>
+                            <span class="button-33">C#</span>
+                            <span class="button-33">Blender</span>
+                            <span class="button-33">Marker-Based AR</span>
+                        </p>
+                    </div>
+                    
+                    <hr class="project-divider">
+                    
+                    <!-- Project 6 -->
+                    <div class="project-item">
+                        <h3 class="section-heading">AR Filters</h3>
+                        <p class="section-text">
+                            Designed and developed dozens of augmented reality filters for social media platforms using various AR development tools.
+                        </p>
+                        <p class="section-text">
+                            <a href="https://youtube.com/playlist?list=PLbG6mI_jWf8JLFL7oFMyXWy4vpHKEzZAk&si=Y_BcLjG3lexD_GXg" class="project-link">View demos</a>
+                        </p>
+                        <p class="tech-tags">
+                            <span class="button-33">SparkAR</span>
+                            <span class="button-33">Effect House</span>
+                            <span class="button-33">Lens Studio</span>
+                            <span class="button-33">Unity</span>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-footer">
+                    <h3 class="section-heading">About this Portfolio</h3>
+                    <p class="section-text">This interactive 3D portfolio was built using Three.js and WebGL, with 3D models created in Blender. The structure was influenced by bokoko's award-winning portfolio and pandawoan's tutorials on creating interactive 3D websites.</p>
+                    <p class="tech-tags">
+                        <button class="button-33" role="button">JavaScript</button>
+                        <button class="button-33" role="button">Three.js/WebGL</button>
+                        <button class="button-33" role="button">HTML/CSS</button>
+                        <button class="button-33" role="button">Blender</button>
+                    </p>
+                </div>
+            </div>
         </section>
 
 
@@ -270,9 +409,8 @@
                 </h1>
                 <span class="section-number blue-text">06</span>
             </div>
+            
             <div class="section-detail-wrapper">
-<!--                <h3 class="section-heading">Additional Projects</h3>-->
-<!--                <p class="section-text">Check out some of my work outside the XR space. Search my project experience [here].</p>-->
                 <h3 class="section-heading">Get in Touch!</h3>
                 <div id="contact-container">
                     <!--Form Container-->
@@ -284,6 +422,7 @@
                             </div>
                             <input id="contact-name-input-field" tabindex="-1">
                         </div>
+                        
                         <div class="input-container column" id="contact-email-input">
                             <div class="row">
                                 <label for="contact-email-input-field">Email :</label>
@@ -291,6 +430,7 @@
                             </div>
                             <input id="contact-email-input-field" tabindex="-1" type="email">
                         </div>
+
                         <div class="input-container column" id="contact-message-input">
                             <div class="row">
                                 <label for="contact-message-input-field">Message :</label>
@@ -298,31 +438,35 @@
                             </div>
                             <textarea id="contact-message-input-field" tabindex="-1"></textarea>
                         </div>
+                        
                         <div class="row" id="contact-button-container">
                             <!--Social Icons-->
-                            <a href="https://github.com/grace-raper" tabindex="-1" target="_blank"><img
-                                    alt="github contact social icon small 28x28"
-                                    class="social-icon" height="28" src="/icons/github-icon.png"
-                                    width="28"></a>
+                            <a href="https://github.com/grace-raper" tabindex="-1" target="_blank">
+                                <img alt="github contact social icon small 28x28" class="social-icon" 
+                                     height="28" src="/icons/github-icon.png" width="28">
+                            </a>
                             <a href="https://www.linkedin.com/in/graceraper/" tabindex="-1" target="_blank">
-                                <img alt="linkedin contact social icon small 28x28" class="social-icon " height="28"
-                                     src="/icons/linkedin-icon.png" width="28"></a>
-                            <a href="mailto:graceraper@gmail.com" tabindex="-1"> <img alt="email contact social icon small 28x28"
-                                                                                      class="social-icon"
-                                                                                      height="28" src="/icons/mail-icon.png"
-                                                                                      width="28"></a>
-                            <!--              Submit Button-->
+                                <img alt="linkedin contact social icon small 28x28" class="social-icon" 
+                                     height="28" src="/icons/linkedin-icon.png" width="28">
+                            </a>
+                            <a href="mailto:graceraper@gmail.com" tabindex="-1"> 
+                                <img alt="email contact social icon small 28x28" class="social-icon" 
+                                     height="28" src="/icons/mail-icon.png" width="28">
+                            </a>
+                            <!--Submit Button-->
                             <div class="small-button orange-hover" id="contact-submit-button">
                                 Submit
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
+        
     </div>
 </div>
+
 <script src="/main.js" type="module"></script>
+<script type="module" src="/Experience/script.js"></script>
 </body>
 </html>

@@ -23,6 +23,9 @@ export default class Controls {
         this.circleFourth = this.experience.world.floor.circleFourth;
         this.circleFifth = this.experience.world.floor.circleFifth;
         this.circleSixth = this.experience.world.floor.circleSixth;
+        
+        // Store bounce animation controllers
+        this.bounceControllers = {};
 
         gsap.registerPlugin(ScrollTrigger);
 
@@ -130,6 +133,27 @@ export default class Controls {
                                 end: "bottom bottom",
                                 scrub: 0.6,
                                 invalidateOnRefresh: true,
+                                onEnter: () => {
+                                    // Start looping bounce for Ghost Pacer glasses
+                                    if (this.bounceControllers.ghostPacer) {
+                                        this.bounceControllers.ghostPacer.stop();
+                                    }
+                                    
+                                    this.bounceControllers.ghostPacer = this.experience.world.room.createLoopingBounce('ghost_pacer', {
+                                        bounceHeight: 0.5,
+                                        duration: 1,
+                                        bounceTimes: 1,
+                                        loopInterval: 1
+                                    });
+                                    
+                                    this.bounceControllers.ghostPacer.start();
+                                },
+                                onLeave: () => {
+                                    // Stop the bounce animation when leaving section
+                                    if (this.bounceControllers.ghostPacer) {
+                                        this.bounceControllers.ghostPacer.stop();
+                                    }
+                                }
                             },
                         }
                     ).to(
@@ -151,6 +175,27 @@ export default class Controls {
                                 end: "bottom bottom",
                                 scrub: 0.6,
                                 invalidateOnRefresh: true,
+                                onEnter: () => {
+                                    // Start looping bounce for camera object
+                                    if (this.bounceControllers.camera) {
+                                        this.bounceControllers.camera.stop();
+                                    }
+                                    
+                                    this.bounceControllers.camera = this.experience.world.room.createLoopingBounce('dslr', {
+                                        bounceHeight: 0.5,
+                                        duration: 1,
+                                        bounceTimes: 1,
+                                        loopInterval: 1
+                                    });
+                                    
+                                    this.bounceControllers.camera.start();
+                                },
+                                onLeave: () => {
+                                    // Stop the bounce animation when leaving section
+                                    if (this.bounceControllers.camera) {
+                                        this.bounceControllers.camera.stop();
+                                    }
+                                }
                             },
                         }
                     ).to(
@@ -172,6 +217,27 @@ export default class Controls {
                                 end: "bottom bottom",
                                 scrub: 0.6,
                                 invalidateOnRefresh: true,
+                                onEnter: () => {
+                                    // Start looping bounce for computer object
+                                    if (this.bounceControllers.computer) {
+                                        this.bounceControllers.computer.stop();
+                                    }
+                                    
+                                    this.bounceControllers.computer = this.experience.world.room.createLoopingBounce('computer', {
+                                        bounceHeight: 0.5,
+                                        duration: 1,
+                                        bounceTimes: 1,
+                                        loopInterval: 1
+                                    });
+                                    
+                                    this.bounceControllers.computer.start();
+                                },
+                                onLeave: () => {
+                                    // Stop the bounce animation when leaving section
+                                    if (this.bounceControllers.computer) {
+                                        this.bounceControllers.computer.stop();
+                                    }
+                                }
                             },
                         }
                     ).to(
@@ -193,6 +259,27 @@ export default class Controls {
                                 end: "bottom bottom",
                                 scrub: 0.6,
                                 invalidateOnRefresh: true,
+                                onEnter: () => {
+                                    // Start looping bounce for notepad object
+                                    if (this.bounceControllers.notepad) {
+                                        this.bounceControllers.notepad.stop();
+                                    }
+                                    
+                                    this.bounceControllers.notepad = this.experience.world.room.createLoopingBounce('notepad', {
+                                        bounceHeight: 0.5,
+                                        duration: 1,
+                                        bounceTimes: 1,
+                                        loopInterval: 1
+                                    });
+                                    
+                                    this.bounceControllers.notepad.start();
+                                },
+                                onLeave: () => {
+                                    // Stop the bounce animation when leaving section
+                                    if (this.bounceControllers.notepad) {
+                                        this.bounceControllers.notepad.stop();
+                                    }
+                                }
                             },
                         }
                     ).to(

@@ -31,7 +31,8 @@ export default class Room {
         this.setModel();
         this.setAnimation();
         this.onMouseMove();
-        this.setupClickEvents();
+        // Disabled click events to allow form interaction
+        // this.setupClickEvents();
         
         // Log all room children with their positions
         this.logRoomChildren();
@@ -94,12 +95,11 @@ export default class Room {
             // Initially hide all objects until animation starts
             child.scale.set(0, 0, 0);
             
-            // Log important objects for debugging
-            if (['Phone', 'Husky', 'Cessna', 'Computer', 'Frame'].includes(child.name)) {
-                console.log(`Found important object: ${child.name}`);
-                console.log(`  Position: x=${child.position.x.toFixed(3)}, y=${child.position.y.toFixed(3)}, z=${child.position.z.toFixed(3)}`);
-                console.log(`  Scale: x=${child.scale.x.toFixed(3)}, y=${child.scale.y.toFixed(3)}, z=${child.scale.z.toFixed(3)}`);
-            }
+            // // Log important objects for debugging
+            // if (['Phone', 'Husky', 'Cessna', 'Computer', 'Frame'].includes(child.name)) {
+            //     console.log(`Found important object: ${child.name}`);
+            //     console.log(`  Position: x=${child.position.x.toFixed(3)}, y=${child.position.y.toFixed(3)}, z=${child.position.z.toFixed(3)}`);
+            // }
             if (child.name === "Cube") {
                 // child.scale.set(1, 1, 1);
                 child.position.set(0, -1, 0);
@@ -201,30 +201,14 @@ export default class Room {
             // Update mouse position
             this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
             this.mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
-            
             console.log(`Mouse position: x=${this.mouse.x.toFixed(3)}, y=${this.mouse.y.toFixed(3)}`);
             
-            // Check for intersections
-            this.raycaster.setFromCamera(this.mouse, this.camera);
             
-            // Create a list of specific objects we want to check
-            const targetNames = ['phone', 'husky', 'cessna', 'computer', 'frame'];
-            const interactiveObjects = [];
-            
-            // Find these objects in the room children
-            targetNames.forEach(name => {
-                const obj = this.roomChildren[name.toLowerCase()];
-                if (obj) {
-                    // Make sure the object has a non-zero scale
-                    if (obj.scale.x === 0 || obj.scale.y === 0 || obj.scale.z === 0) {
-                        console.log(`Warning: ${name} has zero scale, setting to 1,1,1`);
-                        obj.scale.set(1, 1, 1);
-                    }
-                    interactiveObjects.push(obj);
-                }
-            });
-            
-            // Log the objects we're checking
+        // Click events are disabled to allow form interaction
+        // This method is intentionally empty to prevent click handling
+        // that would interfere with the contact form
+        return;
+    }
             console.log(`Checking ${interactiveObjects.length} objects for intersection`);
             
             // Check for intersections with recursive flag set to true to check children

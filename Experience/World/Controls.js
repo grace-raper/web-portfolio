@@ -301,15 +301,122 @@ export default class Controls {
                                 end: "bottom bottom",
                                 scrub: 0.6,
                                 invalidateOnRefresh: true,
+                                onUpdate: (self) => {
+                                    // Get progress of the animation (0 to 1)
+                                    const progress = self.progress;
+                                    const fixedPortfolioInfo = document.getElementById('fixed-portfolio-info');
+                                    
+                                    if (progress >= 0.95) {
+                                        // Create or show contact container dynamically
+                                        let dynamicContactContainer = document.getElementById('dynamic-contact-container');
+                                        
+                                        if (!dynamicContactContainer) {
+                                            // Create a new container element
+                                            dynamicContactContainer = document.createElement('div');
+                                            dynamicContactContainer.id = 'dynamic-contact-container';
+                                            
+                                            // Set styles directly
+                                            Object.assign(dynamicContactContainer.style, {
+                                                position: 'fixed',
+                                                top: '5vh',
+                                                left: '5vw',
+                                                zIndex: '1000',
+                                                padding: '20px',
+                                                borderRadius: '20px',
+                                                background: 'white',
+                                                boxSizing: 'border-box',
+                                                width: '25vw',
+                                                minWidth: '350px',
+                                                opacity: '0',
+                                                boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)'
+                                            });
+                                            
+                                            // Clone content from original container if it exists
+                                            const fixedContactContainer = document.getElementById('fixed-contact-container');
+                                            if (fixedContactContainer) {
+                                                dynamicContactContainer.innerHTML = fixedContactContainer.innerHTML;
+                                            } else {
+                                                // Create basic content
+                                                dynamicContactContainer.innerHTML = `
+                                                    <h3 class="section-heading">Get in Touch!</h3>
+                                                    <div class="column contact-container" id="contact-form-container">
+                                                        <div class="input-container column" id="contact-name-input">
+                                                            <div class="row">
+                                                                <label for="contact-name-input-field">Name :</label>
+                                                                <span class="error-label hide">Please enter your name.</span>
+                                                            </div>
+                                                            <input id="contact-name-input-field" tabindex="-1">
+                                                        </div>
+                                                        
+                                                        <div class="input-container column" id="contact-email-input">
+                                                            <div class="row">
+                                                                <label for="contact-email-input-field">Email :</label>
+                                                                <span class="error-label hide">Please enter a valid email address.</span>
+                                                            </div>
+                                                            <input id="contact-email-input-field" tabindex="-1" type="email">
+                                                        </div>
+                                                        
+                                                        <div class="input-container column" id="contact-message-input">
+                                                            <div class="row">
+                                                                <label for="contact-message-input-field">Message :</label>
+                                                                <span class="error-label hide">Please enter your message.</span>
+                                                            </div>
+                                                            <textarea id="contact-message-input-field" tabindex="-1"></textarea>
+                                                        </div>
+                                                        
+                                                        <div class="row" id="contact-button-container">
+                                                            <div class="small-button orange-hover" id="contact-submit-button">Submit</div>
+                                                        </div>
+                                                    </div>
+                                                `;
+                                            }
+                                            
+                                            // Add to document body
+                                            document.body.appendChild(dynamicContactContainer);
+                                        }
+                                        
+                                        // Show with animation
+                                        dynamicContactContainer.style.display = 'block';
+                                        gsap.to(dynamicContactContainer, { opacity: 1, duration: 0.5 });
+                                        
+                                        // Show portfolio info container
+                                        if (fixedPortfolioInfo) {
+                                            fixedPortfolioInfo.style.display = 'block';
+                                            gsap.to(fixedPortfolioInfo, { opacity: 1, duration: 0.5 });
+                                        }
+                                    } else {
+                                        // Hide containers with fade-out effect
+                                        const dynamicContactContainer = document.getElementById('dynamic-contact-container');
+                                        if (dynamicContactContainer) {
+                                            gsap.to(dynamicContactContainer, { 
+                                                opacity: 0, 
+                                                duration: 0.3,
+                                                onComplete: () => {
+                                                    dynamicContactContainer.style.display = 'none';
+                                                }
+                                            });
+                                        }
+                                        
+                                        if (fixedPortfolioInfo && fixedPortfolioInfo.style.opacity !== '0') {
+                                            gsap.to(fixedPortfolioInfo, { 
+                                                opacity: 0, 
+                                                duration: 0.3,
+                                                onComplete: () => {
+                                                    fixedPortfolioInfo.style.display = 'none';
+                                                }
+                                            });
+                                        }
+                                    }
+                                }
                             },
                         }
                     ).to(
                         this.room.scale,
-                        {x: 0.7, y: 0.7, z: 0.7},
+                        {x: 0.15, y: 0.15, z: 0.15},
                         "same"
                     ).to(
                         this.camera.orthographicCamera.position,
-                        {x: 7.5, y: 12, z: 10},
+                        {x: 0, y: 6.5, z: 9.25},
                         "same"
                     );
                 },

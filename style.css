@@ -719,6 +719,56 @@ svg {
     margin: 0 8px
 }
 
+/* Fixed position containers */
+#fixed-contact-container {
+    position: fixed;
+    top: 5vh; /* 5% of viewport height */
+    left: 5vw; /* 5% of viewport width */
+    z-index: 1000;
+    padding: 20px;
+    border-radius: 20px;
+    background: white;
+    box-sizing: border-box;
+    width: 25vw; /* 1/4 of viewport width */
+    min-width: 350px; /* Minimum width for small screens */
+    display: none; /* Hidden by default, shown with JS */
+    opacity: 0; /* Start with 0 opacity for fade effect */
+    transition: opacity 0.3s ease;
+}
+
+#fixed-portfolio-info {
+    position: fixed;
+    bottom: 5vh; /* 5% of viewport height */
+    right: 5vw; /* 5% of viewport width */
+    z-index: 1000;
+    padding: 20px;
+    border-radius: 20px;
+    background: white;
+    box-sizing: border-box;
+    width: 25vw; /* 1/4 of viewport width */
+    min-width: 350px; /* Minimum width for small screens */
+    display: none; /* Hidden by default, shown with JS */
+    opacity: 0; /* Start with 0 opacity for fade effect */
+    transition: opacity 0.3s ease;
+}
+
+#fixed-contact-container input, 
+#fixed-contact-container textarea {
+    border: none;
+    font-size: 1.1rem;
+    font-family: Poppins, sans-serif;
+    background: transparent !important;
+    font-weight: 500;
+    color: #111029;
+    resize: none;
+}
+
+#fixed-contact-container input:focus, 
+#fixed-contact-container textarea:focus {
+    outline: none;
+    border: none;
+}
+
 .error-label {
     color: #d85454
 }

@@ -753,20 +753,47 @@ svg {
 }
 
 #fixed-contact-container input, 
-#fixed-contact-container textarea {
-    border: none;
-    font-size: 1.1rem;
-    font-family: Poppins, sans-serif;
-    background: transparent !important;
-    font-weight: 500;
-    color: #111029;
-    resize: none;
+#fixed-contact-container textarea,
+#dynamic-contact-container input,
+#dynamic-contact-container textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-family: inherit;
 }
 
-#fixed-contact-container input:focus, 
-#fixed-contact-container textarea:focus {
-    outline: none;
-    border: none;
+.social-icons-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-right: auto;
+}
+
+.social-icon {
+    transition: transform 0.2s ease;
+}
+
+.social-icon:hover {
+    transform: scale(1.2);
+}
+
+
+
+#contact-button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+#fixed-contact-container textarea:focus,
+#dynamic-contact-container textarea:focus,
+#fixed-contact-container input:focus,
+#dynamic-contact-container input:focus {
+    outline: 1px solid #ff5f1f;
+    border-color: #ff5f1f;
 }
 
 .error-label {

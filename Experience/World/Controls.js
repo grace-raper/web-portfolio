@@ -345,7 +345,7 @@ export default class Controls {
                                                                 <label for="contact-name-input-field">Name :</label>
                                                                 <span class="error-label hide">Please enter your name.</span>
                                                             </div>
-                                                            <input id="contact-name-input-field" tabindex="-1">
+                                                            <input id="contact-name-input-field" tabindex="0">
                                                         </div>
                                                         
                                                         <div class="input-container column" id="contact-email-input">
@@ -353,7 +353,7 @@ export default class Controls {
                                                                 <label for="contact-email-input-field">Email :</label>
                                                                 <span class="error-label hide">Please enter a valid email address.</span>
                                                             </div>
-                                                            <input id="contact-email-input-field" tabindex="-1" type="email">
+                                                            <input id="contact-email-input-field" tabindex="0" type="email">
                                                         </div>
                                                         
                                                         <div class="input-container column" id="contact-message-input">
@@ -361,7 +361,7 @@ export default class Controls {
                                                                 <label for="contact-message-input-field">Message :</label>
                                                                 <span class="error-label hide">Please enter your message.</span>
                                                             </div>
-                                                            <textarea id="contact-message-input-field" tabindex="-1"></textarea>
+                                                            <textarea id="contact-message-input-field" tabindex="0"></textarea>
                                                         </div>
                                                         
                                                         <div class="row" id="contact-button-container">

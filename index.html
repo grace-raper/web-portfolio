@@ -342,66 +342,68 @@
         <div class="sixth-move section-margin"></div>
 
         <!-- Fixed position contact form at top left -->
-<div id="fixed-contact-container">
-    <h3 class="section-heading">Get in Touch!</h3>
-    <div class="column contact-container" id="contact-form-container">
-        <div class="input-container column" id="contact-name-input">
-            <div class="row">
-                <label for="contact-name-input-field">Name :</label>
-                <span class="error-label hide">Please enter your name.</span>
+        <div id="fixed-contact-container" style="z-index: 1000;">
+            <h3 class="section-heading">Get in Touch!</h3>
+            <div class="column contact-container" id="contact-form-container">
+                <div class="input-container column" id="contact-name-input">
+                    <div class="row">
+                        <label for="contact-name-input-field">Name :</label>
+                        <span class="error-label hide">Please enter your name.</span>
+                    </div>
+                    <input id="contact-name-input-field">
+                </div>
+                
+                <div class="input-container column" id="contact-email-input">
+                    <div class="row">
+                        <label for="contact-email-input-field">Email :</label>
+                        <span class="error-label hide">Please enter a valid email address.</span>
+                    </div>
+                    <input id="contact-email-input-field" type="email">
+                </div>
+
+                <div class="input-container column" id="contact-message-input">
+                    <div class="row">
+                        <label for="contact-message-input-field">Message :</label>
+                        <span class="error-label hide">Please enter your message.</span>
+                    </div>
+                    <textarea id="contact-message-input-field"></textarea>
+                </div>
+                
+                <div class="row" id="contact-button-container">
+                    <!--Social Icons-->
+                    <div class="social-icons-group">
+                        <a href="https://github.com/grace-raper" target="_blank">
+                            <img alt="github contact social icon small 28x28" class="social-icon" 
+                                height="28" src="/icons/github-icon.png" width="28">
+                        </a>
+                        <a href="https://www.linkedin.com/in/graceraper/" target="_blank">
+                            <img alt="linkedin contact social icon small 28x28" class="social-icon" 
+                                height="28" src="/icons/linkedin-icon.png" width="28">
+                        </a>
+                        <a href="mailto:graceraper@gmail.com"> 
+                            <img alt="email contact social icon small 28x28" class="social-icon" 
+                                height="28" src="/icons/mail-icon.png" width="28">
+                        </a>
+                    </div>
+                    <!--Submit Button-->
+                    <div class="small-button orange-hover" id="contact-submit-button">
+                        Submit
+                    </div>
+                </div>
             </div>
-            <input id="contact-name-input-field" tabindex="-1">
-        </div>
-        
-        <div class="input-container column" id="contact-email-input">
-            <div class="row">
-                <label for="contact-email-input-field">Email :</label>
-                <span class="error-label hide">Please enter a valid email address.</span>
-            </div>
-            <input id="contact-email-input-field" tabindex="-1" type="email">
         </div>
 
-        <div class="input-container column" id="contact-message-input">
-            <div class="row">
-                <label for="contact-message-input-field">Message :</label>
-                <span class="error-label hide">Please enter your message.</span>
-            </div>
-            <textarea id="contact-message-input-field" tabindex="-1"></textarea>
+        <!-- Fixed position portfolio info at bottom right -->
+        <div id="fixed-portfolio-info">
+            <h3 class="section-heading">About this Portfolio</h3>
+            <p class="section-text">This interactive 3D portfolio was built using Three.js and WebGL, with 3D models created in Blender. The structure was influenced by bokoko's award-winning portfolio and pandawoan's tutorials on creating interactive 3D websites.</p>
+            <p class="tech-tags">
+                <span class="button-33">JavaScript</span>
+                <span class="button-33">Three.js/WebGL</span>
+                <span class="button-33">HTML/CSS</span>
+                <span class="button-33">Blender</span>
+            </p>
         </div>
-        
-        <div class="row" id="contact-button-container">
-            <!--Social Icons-->
-            <a href="https://github.com/grace-raper" tabindex="-1" target="_blank">
-                <img alt="github contact social icon small 28x28" class="social-icon" 
-                     height="28" src="/icons/github-icon.png" width="28">
-            </a>
-            <a href="https://www.linkedin.com/in/graceraper/" tabindex="-1" target="_blank">
-                <img alt="linkedin contact social icon small 28x28" class="social-icon" 
-                     height="28" src="/icons/linkedin-icon.png" width="28">
-            </a>
-            <a href="mailto:graceraper@gmail.com" tabindex="-1"> 
-                <img alt="email contact social icon small 28x28" class="social-icon" 
-                     height="28" src="/icons/mail-icon.png" width="28">
-            </a>
-            <!--Submit Button-->
-            <div class="small-button orange-hover" id="contact-submit-button">
-                Submit
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Fixed position portfolio info at bottom right -->
-<div id="fixed-portfolio-info">
-    <h3 class="section-heading">About this Portfolio</h3>
-    <p class="section-text">This interactive 3D portfolio was built using Three.js and WebGL, with 3D models created in Blender. The structure was influenced by bokoko's award-winning portfolio and pandawoan's tutorials on creating interactive 3D websites.</p>
-    <p class="tech-tags">
-        <span class="button-33">JavaScript</span>
-        <span class="button-33">Three.js/WebGL</span>
-        <span class="button-33">HTML/CSS</span>
-        <span class="button-33">Blender</span>
-    </p>
-</div>
         
     </div>
 </div>

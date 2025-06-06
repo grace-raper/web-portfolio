@@ -2,14 +2,16 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Function to initialize the contact form
     function initContactForm() {
-        // Check if dynamic contact container exists (it's created by Controls.js)
-        const checkForContactForm = setInterval(() => {
-            const dynamicContactContainer = document.getElementById('dynamic-contact-container');
-            if (dynamicContactContainer) {
-                clearInterval(checkForContactForm);
-                setupContactForm(dynamicContactContainer);
-            }
-        }, 500);
+        console.log('Initializing contact form...');
+        // Use the static contact container
+        const contactContainer = document.getElementById('fixed-contact-container');
+        console.log('Contact container found:', contactContainer);
+        if (contactContainer) {
+            setupContactForm(contactContainer);
+            console.log('Contact form setup complete');
+        } else {
+            console.error('Contact container not found!');
+        }
     }
 
     // Function to set up the contact form event listeners and functionality
@@ -20,37 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const messageInput = container.querySelector('#contact-message-input-field');
         const submitButton = container.querySelector('#contact-submit-button');
         
-        // Add social icons if they don't exist
-        if (!container.querySelector('.social-icons-container')) {
-            const buttonContainer = container.querySelector('#contact-button-container');
-            
-            // Create social icons container
-            const socialIconsContainer = document.createElement('div');
-            socialIconsContainer.className = 'social-icons-container';
-            socialIconsContainer.style.display = 'flex';
-            socialIconsContainer.style.alignItems = 'center';
-            socialIconsContainer.style.marginRight = 'auto';
-            socialIconsContainer.style.gap = '10px';
-            
-            // Add social icons
-            socialIconsContainer.innerHTML = `
-                <a href="https://github.com/grace-raper" target="_blank" tabindex="-1"> 
-                    <img alt="github social icon small 28x28" class="social-icon" 
-                         height="28" src="/icons/github-icon.png" width="28">
-                </a>
-                <a href="https://linkedin.com/in/graceraper" target="_blank" tabindex="-1"> 
-                    <img alt="linkedin social icon small 28x28" class="social-icon" 
-                         height="28" src="/icons/linkedin-icon.png" width="28">
-                </a>
-                <a href="mailto:graceraper@gmail.com" tabindex="-1"> 
-                    <img alt="email contact social icon small 28x28" class="social-icon" 
-                         height="28" src="/icons/mail-icon.png" width="28">
-                </a>
-            `;
-            
-            // Insert social icons before the submit button
-            buttonContainer.insertBefore(socialIconsContainer, submitButton);
-        }
+        // Social icons are already in the HTML
         
         // Form validation
         function validateForm() {

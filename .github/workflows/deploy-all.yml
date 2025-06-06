@@ -1,0 +1,49 @@
+name: Deploy All Sites
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      # Build and deploy main site
+      - name: Install main site dependencies
+        run: npm ci
+
+      - name: Build main site
+        run: npm run build
+
+      # Build and deploy caspir-cam
+      - name: Install caspir-cam dependencies
+        working-directory: ./caspir-cam
+        run: npm ci
+
+      - name: Build caspir-cam
+        working-directory: ./caspir-cam
+        run: npm run build
+
+      # Move caspir-cam build to main site's dist directory
+      - name: Move caspir-cam build
+        run: |
+          mkdir -p dist/caspir-cam
+          cp -r caspir-cam/dist/* dist/caspir-cam/
+
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}

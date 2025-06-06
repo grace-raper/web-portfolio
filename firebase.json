@@ -4,6 +4,10 @@
     "ignore": [],
     "rewrites": [
       {
+        "source": "/caspir-cam/**",
+        "destination": "/caspir-cam/index.html"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }

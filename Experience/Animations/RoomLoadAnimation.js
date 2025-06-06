@@ -54,36 +54,7 @@ export default class RoomLoadAnimation {
                     duration: this.config.chairRotation.duration,
                 },
                 this.config.chairRotation.delay
-            );
-
-            // Move text animations to happen after room elements appear
-            this.secondTimeline
-                .to(
-                    ".hero-main-title .animatedis",
-                    this.config.textAnimations.heroMainTitle,
-                    "text-animations"
-                )
-                .to(
-                    ".hero-main-description .animatedis",
-                    this.config.textAnimations.heroMainDescription,
-                    "text-animations"
-                )
-                .to(
-                    ".first-sub .animatedis",
-                    this.config.textAnimations.firstSub,
-                    "text-animations"
-                )
-                .to(
-                    ".second-sub .animatedis",
-                    this.config.textAnimations.secondSub,
-                    "text-animations"
-                );
-
-            // Final step - show arrow and resolve promise
-            this.secondTimeline.to(".arrow-svg-wrapper", {
-                opacity: this.config.arrowSvgWrapper.opacity,
-                onComplete: resolve,
-            });
+            ).eventCallback("onComplete", resolve);
             
         });
     }

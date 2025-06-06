@@ -31,7 +31,7 @@ export default class Preloader extends EventEmitter {
         convert(document.querySelector(".intro-text"));
         convert(document.querySelector(".hero-main-title"));
         convert(document.querySelector(".hero-main-description"));
-        convert(document.querySelector(".hero-second-subheading"));
+        convert(document.querySelector(".first-sub"));
         convert(document.querySelector(".second-sub"));
 
         this.room = this.experience.world.room.actualRoom;
@@ -64,13 +64,61 @@ export default class Preloader extends EventEmitter {
                     },
                     "fadeout"
                 )
-                .to(
-                    ".arrow-svg-wrapper",
-                    {
-                        opacity: 0,
-                    },
-                    "fadeout"
-                )
+                // .to(
+                //     ".arrow-svg-wrapper",
+                //     {
+                //         opacity: 0,
+                //     },
+                //     "fadeout"
+                // )
+                .eventCallback("onComplete", resolve);
+        });
+    }
+
+    fadeInHero() {
+        return new Promise((resolve) => {
+            const timeline = new GSAP.timeline();
+
+            // Set initial state of hero text elements
+            GSAP.set(".hero-main-title .animatedis, .hero-main-description .animatedis, .first-sub .animatedis, .second-sub .animatedis", {
+                yPercent: 100,
+                opacity: 0
+            });
+
+            timeline
+                .to(".hero-main-title .animatedis", {
+                    yPercent: 0,
+                    opacity: 1,
+                    duration: 1,
+                    stagger: 0,
+                    ease: "back.out(1.7)"
+                }, 
+            "fadein")
+                .to(".hero-main-description .animatedis", {
+                    yPercent: 0,
+                    opacity: 1,
+                    duration: 1,
+                    stagger: ">-0.8",
+                    ease: "back.out(1.7)"
+                }, "fadein")
+                .to(".first-sub .animatedis", {
+                    yPercent: 0,
+                    opacity: 1,
+                    duration: 1,
+                    stagger: ">-0.8",
+                    ease: "back.out(1.7)"
+                }, "fadein")
+                .to(".second-sub .animatedis", {
+                    yPercent: 0,
+                    opacity: 1,
+                    duration: 1,
+                    stagger: ">-0.8",
+                    ease: "back.out(1.7)"
+                }, "fadein")
+                .to(".arrow-svg-wrapper", {
+                    opacity: 1,
+                    onComplete: resolve,
+                }, "fadein")
                 .eventCallback("onComplete", resolve);
         });
     }
@@ -108,8 +156,9 @@ export default class Preloader extends EventEmitter {
         // instead of waiting for scroll event
         setTimeout(() => {
             this.playSecondIntro();
-        }, 1000); // 1 second delay before auto-transitioning
+        }, 500);
     }
+
     async playSecondIntro() {
         this.moveFlag = false;
         
@@ -119,9 +168,12 @@ export default class Preloader extends EventEmitter {
         // Then spin the cube
         await this.spinCube();
         
-        // Finally load the room
+        // Then load the room
         await this.loadRoom();
-        
+
+        // Fade in hero text
+        await this.fadeInHero();
+
         this.scaleFlag = false;
         this.emit("enablecontrols");
     }

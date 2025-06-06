@@ -343,7 +343,7 @@
 
         <!-- Fixed position contact form at top left -->
         <div id="fixed-contact-container" style="z-index: 1000;">
-            <h3 class="section-heading">Get in Touch!</h3>
+            <h3 class="section-heading">Get in Touch!</h3> 
             <div class="column contact-container" id="contact-form-container">
                 <form action="https://formspree.io/f/xwpbvkjy" method="POST" id="contact-form">
                     <div class="input-container column" id="contact-name-input">
@@ -406,6 +406,71 @@
                 <span class="button-33">Blender</span>
             </p>
         </div>
+
+        <!-- Mobile footer section -->
+        <footer class="mobile-footer">
+            <div class="mobile-footer-content">
+                <div class="mobile-contact-section">
+                    <h3 class="section-heading">Get in Touch!</h3>
+                    <form action="https://formspree.io/f/xwpbvkjy" method="POST" id="mobile-contact-form" class="contact-form">
+                        <div class="input-container column">
+                            <div class="row">
+                                <label for="mobile-name-input">Name :</label>
+                                <span class="error-label hide">Please enter your name.</span>
+                            </div>
+                            <input id="mobile-name-input" name="name" required>
+                        </div>
+                        
+                        <div class="input-container column">
+                            <div class="row">
+                                <label for="mobile-email-input">Email :</label>
+                                <span class="error-label hide">Please enter a valid email address.</span>
+                            </div>
+                            <input id="mobile-email-input" name="email" type="email" required>
+                        </div>
+
+                        <div class="input-container column">
+                            <div class="row">
+                                <label for="mobile-message-input">Message :</label>
+                                <span class="error-label hide">Please enter your message.</span>
+                            </div>
+                            <textarea id="mobile-message-input" name="message" required></textarea>
+                        </div>
+                        
+                        <div class="row" id="mobile-contact-actions">
+                            <div class="social-icons-group">
+                                <a href="https://github.com/grace-raper" target="_blank">
+                                    <img alt="github contact social icon small 28x28" class="social-icon" 
+                                        height="28" src="/icons/github-icon.png" width="28">
+                                </a>
+                                <a href="https://www.linkedin.com/in/graceraper/" target="_blank">
+                                    <img alt="linkedin contact social icon small 28x28" class="social-icon" 
+                                        height="28" src="/icons/linkedin-icon.png" width="28">
+                                </a>
+                                <a href="mailto:graceraper@gmail.com"> 
+                                    <img alt="email contact social icon small 28x28" class="social-icon" 
+                                        height="28" src="/icons/mail-icon.png" width="28">
+                                </a>
+                            </div>
+                            <button type="submit" class="small-button orange-hover">
+                                Submit
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <hr class="project-divider">
+                <div class="mobile-about-section">
+                    <h3 class="section-heading">About this Portfolio</h3>
+                    <p class="section-text">This interactive 3D portfolio was built using Three.js and WebGL, with 3D models created in Blender. The structure was influenced by bokoko's award-winning portfolio and pandawoan's tutorials on creating interactive 3D websites.</p>
+                    <p class="tech-tags">
+                        <span class="button-33">JavaScript</span>
+                        <span class="button-33">Three.js/WebGL</span>
+                        <span class="button-33">HTML/CSS</span>
+                        <span class="button-33">Blender</span>
+                    </p>
+                </div>
+            </div>
+        </footer>
         
     </div>
 </div>

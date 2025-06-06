@@ -1,26 +1,4 @@
 {
-  "textAnimations": {
-    "heroMainTitle": {
-      "yPercent": 0,
-      "stagger": 0.07,
-      "ease": "back.out(1.7)"
-    },
-    "heroMainDescription": {
-      "yPercent": 0,
-      "stagger": 0.07,
-      "ease": "back.out(1.7)"
-    },
-    "firstSub": {
-      "yPercent": 0,
-      "stagger": 0.07,
-      "ease": "back.out(1.7)"
-    },
-    "secondSub": {
-      "yPercent": 0,
-      "stagger": 0.07,
-      "ease": "back.out(1.7)"
-    }
-  },
   "roomElements": {
     "defaultScale": {
       "x": 1,

@@ -434,7 +434,14 @@ export default class Controls {
                                 
                                 this.bounceControllers.ghostPacer.start();
                             },
-                    ).to(
+                            onLeave: () => {
+                                // Stop the bounce animation when leaving section
+                                if (this.bounceControllers.ghostPacer) {
+                                    this.bounceControllers.ghostPacer.stop();
+                                }
+                            }
+                        }
+                    }).to(
                         this.room.scale,
                         {x: 0.6, y: 0.6, z: 0.6},
                         "same"
@@ -443,14 +450,6 @@ export default class Controls {
                         {x: 6, y: 12, z: 10},
                         "same"
                     );
-                            onLeave: () => {
-                                // Stop the bounce animation when leaving section
-                                if (this.bounceControllers.ghostPacer) {
-                                    this.bounceControllers.ghostPacer.stop();
-                                }
-                            }
-                        },
-                    }
 
                     // Third section -----------------------------------------
                     this.thirdMoveTimeline = new gsap.timeline(
@@ -570,28 +569,26 @@ export default class Controls {
                         }
                     ).to(
                         this.room.scale,
-                        {x: 0.11, y: 0.11, z: 0.11},
+                        {x: 0.4, y: 0.4, z: 0.4},
                         "same"
                     ).to(
                         this.camera.orthographicCamera.position,
-                        {x: 0, y: 6.5, z: 10},
+                        {x: -1, y: 7, z: 8},
                         "same"
                     );
 
                     // Sixth section -----------------------------------------
-                    this.sixthMoveTimeline = new gsap.timeline(
-                        {
-                            scrollTrigger: {
-                                trigger: ".sixth-move",
-                                start: "top top",
-                                end: "bottom bottom",
-                                scrub: 0.6,
-                                invalidateOnRefresh: true,
-                            },
+                    this.sixthMoveTimeline = new gsap.timeline({
+                        scrollTrigger: {
+                            trigger: ".sixth-move",
+                            start: "top top",
+                            end: "bottom bottom",
+                            scrub: 0.6,
+                            invalidateOnRefresh: true,
                         }
-                    ).to(
+                    }).to(
                         this.room.scale,
-                        {x: 0.09, y: 0.09, z: 0.09},
+                        {x: 0.10, y: 0.10, z: 0.10},
                         "same"
                     ).to(
                         this.camera.orthographicCamera.position,

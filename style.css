@@ -943,6 +943,8 @@ svg {
     padding: 3rem 2rem;
     margin-top: 2rem;
     pointer-events: auto;
+    position: relative;
+    z-index: 3;
 }
 
 .mobile-footer-content {
@@ -1010,6 +1012,10 @@ svg {
 
     .section {
         width: 100%;
+        padding: 100px 4% 250px;
+        z-index: 1;
+        position: relative;
+        border-radius: 0;
     }
 
     .progress-bar-wrapper-left {
@@ -1018,19 +1024,26 @@ svg {
     }
 
     .hero-main {
-        bottom: 120px;
+        bottom: auto;
+        top: 25%;
+        /* transform: translateY(-50%); */
+        z-index: 2;
     }
 
     .hero-second {
-        top: 160px;
+        top: auto;
+        top: 75%;
+        z-index: 2;
     }
 
     .hero-wrapper {
         width: calc(100% - 60px);
+        padding: 0 20px;
     }
 
     .hero-main-title {
         font-size: 32px;
+        margin-bottom: 5px;
     }
 
     .hero-main-description {
@@ -1039,6 +1052,11 @@ svg {
 
     .hero-second-subheading {
         font-size: 18px;
+    }
+
+    .arrow-svg-wrapper {
+        top: 85%;
+        z-index: 2;
     }
 }
 

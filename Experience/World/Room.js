@@ -1,8 +1,6 @@
 import * as THREE from "three";
 import Experience from "../Experience.js";
 import GSAP from "gsap";
-import { RectAreaLightHelper } from "three/examples/jsm/helpers/RectAreaLightHelper.js";
-import {GLTFLoader} from "three/examples/jsm/loaders/GLTFLoader.js";
 
 export default class Room {
     constructor() {
@@ -13,15 +11,8 @@ export default class Room {
         this.room = this.resources.items.room;
         this.actualRoom = this.room.scene;
         this.roomChildren = {};
-        this.raycaster = new THREE.Raycaster();
-        this.mouse = new THREE.Vector2();
         this.camera = this.experience.camera.perspectiveCamera;
         
-        // Debug visualization properties
-        this.debugMode = false;
-        this.objectHelpers = {};
-        this.labelDivs = {};
-
         this.lerp = {
             current: 0,
             target: 0,
@@ -30,15 +21,8 @@ export default class Room {
 
         this.setModel();
         this.setAnimation();
-        this.onMouseMove();
-        // Disabled click events to allow form interaction
-        // this.setupClickEvents();
         
-        // Log all room children with their positions
-        this.logRoomChildren();
-        
-        // Add key listener for debug mode toggle
-        this.setupDebugToggle();
+
     }
 
     setModel() {
@@ -148,9 +132,12 @@ export default class Room {
                 ((e.clientX - window.innerWidth / 2) * 2) / window.innerWidth;
             this.lerp.target = this.rotation * 0.05;
             
-            // Update mouse position for raycaster
-            this.mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-            this.mouse.y = - (e.clientY / window.innerHeight) * 2 + 1;
+            // Track mouse position for screen space picker
+            this.mouseX = e.clientX;
+            this.mouseY = e.clientY;
+            
+            // Check for hover with screen space pickers
+            this.checkScreenSpacePickerHover(this.mouseX, this.mouseY);
         });
     }
 
@@ -165,15 +152,16 @@ export default class Room {
 
         this.actualRoom.rotation.y = this.lerp.current;
 
-        this.mixer.update(this.time.delta * 0.0009);
-        
-        // Update raycaster for interactive elements
-        this.updateRaycaster();
-        
+        // Update screen space pickers
+        this.updateScreenSpacePickers();
+
         // Update debug visualization if enabled
         if (this.debugMode) {
             this.updateDebugVisualization();
+            this.updateScreenSpaceDebugVisualization();
         }
+
+        this.mixer.update(this.time.delta * 0.0009);
     }
     
     // New method to log all room children with their positions
@@ -195,75 +183,64 @@ export default class Room {
         return `x=${worldPosition.x.toFixed(3)}, y=${worldPosition.y.toFixed(3)}, z=${worldPosition.z.toFixed(3)}`;
     }
     
-    // Setup click events for interactive elements
-    setupClickEvents() {
+    // Setup screen space pickers for interactive objects
+    setupScreenSpacePickers() {
+        // Initialize mouse tracking
+        this.mouseX = 0;
+        this.mouseY = 0;
+        this.onMouseMove();
+        
+        // Create screen space pickers for interactive objects
+        this.createScreenSpacePickers();
+        
+        // Add click event listener
         window.addEventListener("click", (event) => {
-            // Update mouse position
-            this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-            this.mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
-            console.log(`Mouse position: x=${this.mouse.x.toFixed(3)}, y=${this.mouse.y.toFixed(3)}`);
-            
-            
-        // Click events are disabled to allow form interaction
-        // This method is intentionally empty to prevent click handling
-        // that would interfere with the contact form
-        return;
-    }
-            console.log(`Checking ${interactiveObjects.length} objects for intersection`);
-            
-            // Check for intersections with recursive flag set to true to check children
-            const intersects = this.raycaster.intersectObjects(interactiveObjects, true);
-            
-            console.log(`Found ${intersects.length} intersections`);
-            
-            if (intersects.length > 0) {
-                // Log all intersections for debugging
-                intersects.forEach((intersection, index) => {
-                    console.log(`Intersection ${index}:`, intersection.object.name || 'unnamed object');
-                });
-                
-                // Get the first intersected object
-                const object = this.getClickedObject(intersects[0].object);
-                console.log("Clicked on:", object.name);
-                
-                // Handle the click event based on the object name
-                this.handleObjectClick(object);
-            } else {
-                console.log("No intersections found");
-                
-                // Debug: Check distances and screen ranges for objects
-                interactiveObjects.forEach(obj => {
-                    const worldPos = new THREE.Vector3();
-                    obj.getWorldPosition(worldPos);
-                    
-                    // Create a box3 to get the object's dimensions
-                    const box = new THREE.Box3().setFromObject(obj);
-                    
-                    // Get min and max points in world space
-                    const min = box.min;
-                    const max = box.max;
-                    
-                    // Project min and max points to screen space
-                    const screenMin = min.clone().project(this.camera);
-                    const screenMax = max.clone().project(this.camera);
-                    
-                    // Convert to screen coordinates (0 to window width/height)
-                    const screenMinX = (screenMin.x * 0.5 + 0.5) * window.innerWidth;
-                    const screenMinY = (-screenMin.y * 0.5 + 0.5) * window.innerHeight;
-                    const screenMaxX = (screenMax.x * 0.5 + 0.5) * window.innerWidth;
-                    const screenMaxY = (-screenMax.y * 0.5 + 0.5) * window.innerHeight;
-                    
-                    // Calculate width and height on screen
-                    const screenWidth = Math.abs(screenMaxX - screenMinX);
-                    const screenHeight = Math.abs(screenMaxY - screenMinY);
-                    
-                    console.log(`${obj.name} world position: x=${worldPos.x.toFixed(3)}, y=${worldPos.y.toFixed(3)}, z=${worldPos.z.toFixed(3)}`);
-                    console.log(`${obj.name} world dimensions: width=${(max.x-min.x).toFixed(3)}, height=${(max.y-min.y).toFixed(3)}, depth=${(max.z-min.z).toFixed(3)}`);
-                    console.log(`${obj.name} screen range: x=[${screenMinX.toFixed(0)}-${screenMaxX.toFixed(0)}], y=[${screenMinY.toFixed(0)}-${screenMaxY.toFixed(0)}]`);
-                    console.log(`${obj.name} screen size: width=${screenWidth.toFixed(0)}px, height=${screenHeight.toFixed(0)}px`);
-                });
-            }
+            this.handleScreenSpaceClick(event.clientX, event.clientY);
         });
+    }
+    
+    // Create screen space pickers for interactive objects
+    createScreenSpacePickers() {
+        // Clear any existing pickers
+        this.screenSpacePickers = {};
+        
+        // Create pickers for each interactive object
+        this.interactiveObjects.forEach(objectName => {
+            const object = this.roomChildren[objectName.toLowerCase()];
+            if (!object) {
+                console.warn(`Object ${objectName} not found in roomChildren`);
+                return;
+            }
+            
+            // Create a screen space picker for this object
+            this.createScreenSpacePicker(objectName.toLowerCase(), object);
+        });
+        
+        console.log(`Created ${Object.keys(this.screenSpacePickers).length} screen space pickers`);
+    }
+    
+    // Create a screen space picker for a specific object
+    createScreenSpacePicker(key, object) {
+        // Create a bounding box for the object
+        const box = new THREE.Box3().setFromObject(object);
+        
+        // Assign different colors to different objects
+        let color;
+        switch(key) {
+            case 'husky': color = new THREE.Color(0x00ff00); break; // Green
+            case 'cessna': color = new THREE.Color(0x0000ff); break; // Blue
+            case 'dslr': color = new THREE.Color(0xff0000); break; // Red
+            case 'computer': color = new THREE.Color(0xffff00); break; // Yellow
+            default: color = new THREE.Color(0xffffff); // White
+        }
+        
+        // Store the picker data
+        this.screenSpacePickers[key] = {
+            object: object,
+            box: box,
+            color: color,
+            isHovered: false
+        };
     }
     
     // Helper method to get the parent object with a name (if the clicked mesh is part of a group)
@@ -324,39 +301,116 @@ export default class Room {
         }
     }
     
-    // Update raycaster for hover effects (optional)
-    updateRaycaster() {
-        // Set the raycaster from the camera and mouse position
-        this.raycaster.setFromCamera(this.mouse, this.camera);
-        
-        // Create a list of specific objects we want to check
-        const targetNames = ['phone', 'husky', 'cessna', 'computer', 'frame'];
-        const interactiveObjects = [];
-        
-        // Find these objects in the room children
-        targetNames.forEach(name => {
-            const obj = this.roomChildren[name.toLowerCase()];
-            if (obj) interactiveObjects.push(obj);
-        });
-        
-        // Check for intersections with recursive flag set to true to check children
-        const intersects = this.raycaster.intersectObjects(interactiveObjects, true);
-        
+    // Check if mouse is hovering over any screen space picker
+    checkScreenSpacePickerHover(mouseX, mouseY) {
         // Reset cursor
         document.body.style.cursor = 'default';
         
-        // Change cursor if hovering over an interactive object
-        if (intersects.length > 0) {
-            document.body.style.cursor = 'pointer';
+        // Reset all hover states
+        Object.keys(this.screenSpacePickers).forEach(key => {
+            this.screenSpacePickers[key].isHovered = false;
+        });
+        
+        // Check each picker
+        for (const key in this.screenSpacePickers) {
+            const picker = this.screenSpacePickers[key];
+            const bounds = picker.bounds || this.getScreenSpaceBounds(picker.object);
+            const isInside = this.isPointInScreenSpaceBounds(mouseX, mouseY, bounds);
+            
+            if (isInside) {
+                // Set hover state
+                picker.isHovered = true;
+                document.body.style.cursor = 'pointer';
+                break; // Only hover one object at a time
+            }
         }
+    }
+    
+    // Handle click on screen space pickers
+    handleScreenSpaceClick(mouseX, mouseY) {
+        for (const key in this.screenSpacePickers) {
+            const picker = this.screenSpacePickers[key];
+            const bounds = picker.bounds || this.getScreenSpaceBounds(picker.object);
+            const isInside = this.isPointInScreenSpaceBounds(mouseX, mouseY, bounds);
+            
+            if (isInside) {
+                // Handle the click event based on the object name
+                this.handleObjectClick(picker.object);
+                return;
+            }
+        }
+    }
+    
+    // Update screen space pickers
+    updateScreenSpacePickers() {
+        // Update the bounds of each picker
+        for (const key in this.screenSpacePickers) {
+            const picker = this.screenSpacePickers[key];
+            picker.bounds = this.getScreenSpaceBounds(picker.object);
+        }
+    }
+    
+    // Check if a point is inside the screen space bounds of an object
+    isPointInScreenSpaceBounds(x, y, boundsOrObject) {
+        // Get the screen space bounds of the object if an object is passed
+        const bounds = boundsOrObject.minX !== undefined ? 
+            boundsOrObject : this.getScreenSpaceBounds(boundsOrObject);
+        
+        // Check if the point is inside the bounds
+        return (x >= bounds.minX && x <= bounds.maxX && 
+                y >= bounds.minY && y <= bounds.maxY &&
+                bounds.visible);
+    }
+    
+    // Get screen space bounds of an object
+    getScreenSpaceBounds(object) {
+        // Create a box3 to get the object's dimensions
+        const box = new THREE.Box3().setFromObject(object);
+        
+        // Get min and max points in world space
+        const min = box.min;
+        const max = box.max;
+        
+        // Project min and max points to screen space
+        const screenMin = min.clone().project(this.camera);
+        const screenMax = max.clone().project(this.camera);
+        
+        // Convert to screen coordinates (0 to window width/height)
+        const screenMinX = (screenMin.x * 0.5 + 0.5) * window.innerWidth;
+        const screenMinY = (-screenMin.y * 0.5 + 0.5) * window.innerHeight;
+        const screenMaxX = (screenMax.x * 0.5 + 0.5) * window.innerWidth;
+        const screenMaxY = (-screenMax.y * 0.5 + 0.5) * window.innerHeight;
+        
+        // Calculate width and height on screen
+        const screenWidth = Math.abs(screenMaxX - screenMinX);
+        const screenHeight = Math.abs(screenMaxY - screenMinY);
+        
+        // Check if object is behind the camera
+        const isBehindCamera = screenMin.z > 1 || screenMax.z > 1;
+        
+        return {
+            minX: Math.min(screenMinX, screenMaxX),
+            minY: Math.min(screenMinY, screenMaxY),
+            maxX: Math.max(screenMinX, screenMaxX),
+            maxY: Math.max(screenMinY, screenMaxY),
+            width: Math.abs(screenMaxX - screenMinX),
+            height: Math.abs(screenMaxY - screenMinY),
+            visible: !isBehindCamera
+        };
     }
     
     // Setup debug mode toggle with keyboard
     setupDebugToggle() {
-        window.addEventListener("keydown", (event) => {
-            // Toggle debug mode with 'D' key
+        window.addEventListener('keydown', (event) => {
             if (event.key === 'd' || event.key === 'D') {
-                this.toggleDebugMode();
+                this.debugMode = !this.debugMode;
+                console.log(`Debug mode ${this.debugMode ? 'enabled' : 'disabled'}`);
+                
+                if (this.debugMode) {
+                    this.createDebugVisualization();
+                } else {
+                    this.removeDebugVisualization();
+                }
             }
         });
     }
@@ -372,77 +426,9 @@ export default class Room {
             this.removeDebugVisualization();
         }
     }
-    
-    // Create debug visualization for specific interactive objects
-    createDebugVisualization() {
-        // Remove any existing helpers first
-        this.removeDebugVisualization();
-        
-        // Create container for labels if it doesn't exist
-        if (!this.labelsContainer) {
-            this.labelsContainer = document.createElement('div');
-            this.labelsContainer.style.position = 'absolute';
-            this.labelsContainer.style.top = '0';
-            this.labelsContainer.style.left = '0';
-            this.labelsContainer.style.pointerEvents = 'none';
-            this.labelsContainer.style.zIndex = '1000';
-            document.body.appendChild(this.labelsContainer);
-        }
-        
-        // List of specific objects to highlight
-        const targetObjects = ['phone', 'husky', 'cessna', 'computer', 'frame'];
-        
-        // Create helpers only for target objects
-        targetObjects.forEach(targetKey => {
-            // Convert to lowercase to match the keys in roomChildren
-            const key = targetKey.toLowerCase();
-            const object = this.roomChildren[key];
-            
-            if (!object) {
-                console.log(`Object not found: ${targetKey}`);
-                return;
-            }
-            
-            // Create a bounding box helper with a distinct color
-            const box = new THREE.Box3().setFromObject(object);
-            let color;
-            
-            // Assign different colors to different objects
-            switch(key) {
-                case 'phone': color = new THREE.Color(0xff0000); break; // Red
-                case 'husky': color = new THREE.Color(0x00ff00); break; // Green
-                case 'cessna': color = new THREE.Color(0x0000ff); break; // Blue
-                case 'computer': color = new THREE.Color(0xffff00); break; // Yellow
-                case 'frame': color = new THREE.Color(0xff00ff); break; // Purple
-                default: color = new THREE.Color(0xffffff); // White
-            }
-            
-            const helper = new THREE.Box3Helper(box, color);
-            this.scene.add(helper);
-            this.objectHelpers[key] = helper;
-            
-            // Create a more prominent label div for this object
-            const labelDiv = document.createElement('div');
-            labelDiv.textContent = object.name;
-            labelDiv.style.position = 'absolute';
-            labelDiv.style.backgroundColor = `rgba(${color.r*255}, ${color.g*255}, ${color.b*255}, 0.7)`;
-            labelDiv.style.color = this.getContrastColor(color);
-            labelDiv.style.padding = '8px';
-            labelDiv.style.borderRadius = '5px';
-            labelDiv.style.fontSize = '14px';
-            labelDiv.style.fontWeight = 'bold';
-            labelDiv.style.pointerEvents = 'none';
-            labelDiv.style.boxShadow = '0 2px 5px rgba(0,0,0,0.3)';
-            this.labelsContainer.appendChild(labelDiv);
-            this.labelDivs[key] = labelDiv;
-        });
-        
-        console.log('Debug visualization created for specific objects. Press D to toggle off.');
-    }
-    
+
     // Update positions of debug visualization elements
     updateDebugVisualization() {
-        // Update label positions
         Object.keys(this.labelDivs).forEach(key => {
             const object = this.roomChildren[key];
             if (!object) return;
@@ -493,7 +479,69 @@ export default class Room {
             }
         });
     }
-    
+
+    // Create debug visualization elements
+    createDebugVisualization() {
+        // Create a container for labels
+        this.labelsContainer = document.createElement('div');
+        this.labelsContainer.style.position = 'absolute';
+        this.labelsContainer.style.top = '0px';
+        this.labelsContainer.style.left = '0px';
+        this.labelsContainer.style.width = '100%';
+        this.labelsContainer.style.height = '100%';
+        this.labelsContainer.style.pointerEvents = 'none';
+        document.body.appendChild(this.labelsContainer);
+
+        // Create debug elements for each object with a screen space picker
+        this.screenSpaceDebugElements = {};
+
+        // Create labels for each object
+        Object.keys(this.screenSpacePickers).forEach(key => {
+            const picker = this.screenSpacePickers[key];
+            const object = picker.object;
+            const labelDiv = document.createElement('div');
+            labelDiv.style.position = 'absolute';
+            labelDiv.style.color = '#ffffff';
+            labelDiv.style.fontSize = '12px';
+            labelDiv.style.fontFamily = 'monospace';
+            labelDiv.style.textAlign = 'center';
+            labelDiv.style.pointerEvents = 'none';
+            labelDiv.textContent = `${object.name}`;
+            this.labelsContainer.appendChild(labelDiv);
+            this.labelDivs[key] = labelDiv;
+
+            // Create debug element
+            const debugElement = document.createElement('div');
+            debugElement.style.position = 'absolute';
+            debugElement.style.pointerEvents = 'auto'; // Enable click events
+            debugElement.style.border = '1px solid red'; // Initial border
+            debugElement.addEventListener('click', () => {
+                console.log(`Clicked on ${object.name}`);
+            });
+            this.labelsContainer.appendChild(debugElement);
+            this.screenSpaceDebugElements[key] = debugElement;
+        });
+    }
+
+    // Update positions of screen space debug visualization elements
+    updateScreenSpaceDebugVisualization() {
+        Object.keys(this.screenSpaceDebugElements).forEach(key => {
+            const picker = this.screenSpacePickers[key];
+            if (!picker) {
+                console.warn(`No picker found for ${key}`);
+                return;
+            }
+            const bounds = picker.bounds || this.getScreenSpaceBounds(picker.object);
+            const debugElement = this.screenSpaceDebugElements[key];
+            debugElement.style.left = `${bounds.minX}px`;
+            debugElement.style.top = `${bounds.minY}px`;
+            debugElement.style.width = `${bounds.width}px`;
+            debugElement.style.height = `${bounds.height}px`;
+            debugElement.style.border = `1px solid ${picker.color.getStyle()}`;
+            debugElement.style.display = bounds.visible ? 'block' : 'none';
+        });
+    }
+
     // Remove all debug visualization elements
     removeDebugVisualization() {
         // Remove helpers
@@ -501,7 +549,7 @@ export default class Room {
             this.scene.remove(helper);
         });
         this.objectHelpers = {};
-        
+
         // Remove labels
         if (this.labelsContainer) {
             while (this.labelsContainer.firstChild) {
@@ -510,17 +558,17 @@ export default class Room {
             this.labelDivs = {};
         }
     }
-    
+
     // todo: is this needed?
     // Helper method to determine text color based on background color
     getContrastColor(color) {
         // Calculate luminance - a measure of brightness
         const luminance = 0.299 * color.r + 0.587 * color.g + 0.114 * color.b;
-        
+
         // Use white text on dark backgrounds and black text on light backgrounds
         return luminance > 0.5 ? '#000000' : '#ffffff';
     }
-    
+
     /**
      * Creates a bounce animation for a specific object in the room
      * @param {string} objectName - Name of the object to animate (lowercase key in roomChildren)

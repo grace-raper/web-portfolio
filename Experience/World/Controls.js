@@ -315,20 +315,40 @@ export default class Controls {
                                     
                                     console.log('Scroll progress:', progress);
                                     console.log('Contact form element:', fixedContactContainer);
+                                    console.log('Contact form display:', fixedContactContainer?.style.display);
+                                    console.log('Contact form opacity:', fixedContactContainer?.style.opacity);
                                     
-                                    if (progress >= 0.95) {
-                                        // Show both containers
+                                    if (progress >= 0.95 && !this.isContactFormVisible) {
+                                        console.log('Attempting to show contact form at progress:', progress);
+                                        // Show containers with animation
                                         if (fixedPortfolioInfo) {
                                             fixedPortfolioInfo.style.display = 'block';
                                             gsap.to(fixedPortfolioInfo, { opacity: 1, duration: 0.5 });
                                         }
                                         if (fixedContactContainer) {
+                                            console.log('Showing contact form');
                                             fixedContactContainer.style.display = 'block';
-                                            gsap.to(fixedContactContainer, { opacity: 1, duration: 0.5 });
+                                            fixedContactContainer.style.pointerEvents = 'auto';
+                                            fixedContactContainer.style.zIndex = '999999999';
+                                            gsap.to(fixedContactContainer, { 
+                                                opacity: 1, 
+                                                duration: 0.5,
+                                                onStart: () => {
+                                                    this.isContactFormVisible = true;
+                                                    console.log('Contact form fade-in started');
+                                                },
+                                                onComplete: () => {
+                                                    console.log('Contact form fade-in complete');
+                                                    console.log('Final display:', fixedContactContainer.style.display);
+                                                    console.log('Final opacity:', fixedContactContainer.style.opacity);
+                                                    console.log('Final pointer-events:', fixedContactContainer.style.pointerEvents);
+                                                    console.log('Final z-index:', fixedContactContainer.style.zIndex);
+                                                }
+                                            });
                                         }
-                                    } else {
-                                        // Hide both containers
-                                        if (fixedPortfolioInfo) {
+                                    } else if (progress < 0.95 && this.isContactFormVisible) {
+                                        // Hide containers with fade-out effect
+                                        if (fixedPortfolioInfo && fixedPortfolioInfo.style.opacity !== '0') {
                                             gsap.to(fixedPortfolioInfo, { 
                                                 opacity: 0, 
                                                 duration: 0.3,
@@ -337,10 +357,14 @@ export default class Controls {
                                                 }
                                             });
                                         }
-                                        if (fixedContactContainer) {
+                                        if (fixedContactContainer && fixedContactContainer.style.opacity !== '0') {
                                             gsap.to(fixedContactContainer, { 
                                                 opacity: 0, 
                                                 duration: 0.3,
+                                                onStart: () => {
+                                                    this.isContactFormVisible = false;
+                                                    fixedContactContainer.style.pointerEvents = 'none';
+                                                },
                                                 onComplete: () => {
                                                     fixedContactContainer.style.display = 'none';
                                                 }
@@ -388,16 +412,28 @@ export default class Controls {
                     });
 
                     // Second section -----------------------------------------
-                    this.secondMoveTimeline = new gsap.timeline(
-                        {
-                            scrollTrigger: {
-                                trigger: ".second-move",
-                                start: "top top",
-                                end: "bottom bottom",
-                                scrub: 0.6,
-                                invalidateOnRefresh: true,
+                    this.secondMoveTimeline = new gsap.timeline({
+                        scrollTrigger: {
+                            trigger: ".second-move",
+                            start: "top top",
+                            end: "bottom bottom",
+                            scrub: 0.6,
+                            invalidateOnRefresh: true,
+                            onEnter: () => {
+                                // Start looping bounce for Ghost Pacer glasses
+                                if (this.bounceControllers.ghostPacer) {
+                                    this.bounceControllers.ghostPacer.stop();
+                                }
+                                
+                                this.bounceControllers.ghostPacer = this.experience.world.room.createLoopingBounce('ghost_pacer', {
+                                    bounceHeight: 0.5,
+                                    duration: 1,
+                                    bounceTimes: 1,
+                                    loopInterval: 1
+                                });
+                                
+                                this.bounceControllers.ghostPacer.start();
                             },
-                        }
                     ).to(
                         this.room.scale,
                         {x: 0.6, y: 0.6, z: 0.6},
@@ -407,6 +443,14 @@ export default class Controls {
                         {x: 6, y: 12, z: 10},
                         "same"
                     );
+                            onLeave: () => {
+                                // Stop the bounce animation when leaving section
+                                if (this.bounceControllers.ghostPacer) {
+                                    this.bounceControllers.ghostPacer.stop();
+                                }
+                            }
+                        },
+                    }
 
                     // Third section -----------------------------------------
                     this.thirdMoveTimeline = new gsap.timeline(
@@ -417,8 +461,33 @@ export default class Controls {
                                 end: "bottom bottom",
                                 scrub: 0.6,
                                 invalidateOnRefresh: true,
+                                onEnter: () => {
+                                    // Start looping bounce for camera object
+                                    if (this.bounceControllers.camera) {
+                                        this.bounceControllers.camera.stop();
+                                    }
+                                    
+                                    this.bounceControllers.camera = this.experience.world.room.createLoopingBounce('dslr', {
+                                        bounceHeight: 0.5,
+                                        duration: 1,
+                                        bounceTimes: 1,
+                                        loopInterval: 1
+                                    });
+                                    
+                                    this.bounceControllers.camera.start();
+                                },
+                                onLeave: () => {
+                                    // Stop the bounce animation when leaving section
+                                    if (this.bounceControllers.camera) {
+                                        this.bounceControllers.camera.stop();
+                                    }
+                                }
                             },
                         }
+                    ).to(
+                        this.room.scale,
+                        {x: 0.7, y: 0.7, z: 0.7},
+                        "same"
                     ).to(
                         this.camera.orthographicCamera.position,
                         {x: 1.25, y: 11, z: 10},
@@ -434,6 +503,27 @@ export default class Controls {
                                 end: "bottom bottom",
                                 scrub: 0.6,
                                 invalidateOnRefresh: true,
+                                onEnter: () => {
+                                    // Start looping bounce for computer object
+                                    if (this.bounceControllers.computer) {
+                                        this.bounceControllers.computer.stop();
+                                    }
+                                    
+                                    this.bounceControllers.computer = this.experience.world.room.createLoopingBounce('computer', {
+                                        bounceHeight: 0.5,
+                                        duration: 1,
+                                        bounceTimes: 1,
+                                        loopInterval: 1
+                                    });
+                                    
+                                    this.bounceControllers.computer.start();
+                                },
+                                onLeave: () => {
+                                    // Stop the bounce animation when leaving section
+                                    if (this.bounceControllers.computer) {
+                                        this.bounceControllers.computer.stop();
+                                    }
+                                }
                             },
                         }
                     ).to(
@@ -455,11 +545,32 @@ export default class Controls {
                                 end: "bottom bottom",
                                 scrub: 0.6,
                                 invalidateOnRefresh: true,
+                                onEnter: () => {
+                                    // Start looping bounce for notepad object
+                                    if (this.bounceControllers.notepad) {
+                                        this.bounceControllers.notepad.stop();
+                                    }
+                                    
+                                    this.bounceControllers.notepad = this.experience.world.room.createLoopingBounce('notepad', {
+                                        bounceHeight: 0.5,
+                                        duration: 1,
+                                        bounceTimes: 1,
+                                        loopInterval: 1
+                                    });
+                                    
+                                    this.bounceControllers.notepad.start();
+                                },
+                                onLeave: () => {
+                                    // Stop the bounce animation when leaving section
+                                    if (this.bounceControllers.notepad) {
+                                        this.bounceControllers.notepad.stop();
+                                    }
+                                }
                             },
                         }
                     ).to(
                         this.room.scale,
-                        {x: 0.09, y: 0.09, z: 0.09},
+                        {x: 0.11, y: 0.11, z: 0.11},
                         "same"
                     ).to(
                         this.camera.orthographicCamera.position,
@@ -480,11 +591,11 @@ export default class Controls {
                         }
                     ).to(
                         this.room.scale,
-                        {x: 0.7, y: 0.7, z: 0.7},
+                        {x: 0.09, y: 0.09, z: 0.09},
                         "same"
                     ).to(
                         this.camera.orthographicCamera.position,
-                        {x: 5.5, y: 12, z: 10},
+                        {x: 0, y: 6.5, z: 10},
                         "same"
                     );
                 },

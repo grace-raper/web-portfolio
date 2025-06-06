@@ -2,61 +2,88 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Function to initialize the contact form
     function initContactForm() {
-        console.log('Initializing contact form...');
-        // Use the static contact container
         const contactContainer = document.getElementById('fixed-contact-container');
-        console.log('Contact container found:', contactContainer);
         if (contactContainer) {
             setupContactForm(contactContainer);
-            console.log('Contact form setup complete');
-        } else {
-            console.error('Contact container not found!');
         }
     }
 
     // Function to set up the contact form event listeners and functionality
     function setupContactForm(container) {
-        // Get form elements
+        const form = container.querySelector('#contact-form');
         const nameInput = container.querySelector('#contact-name-input-field');
         const emailInput = container.querySelector('#contact-email-input-field');
         const messageInput = container.querySelector('#contact-message-input-field');
         const submitButton = container.querySelector('#contact-submit-button');
-        
-        // Social icons are already in the HTML
-        
-        // Form validation
-        function validateForm() {
-            let isValid = true;
+
+        if (!form) {
+            console.error('Contact form not found');
+            return;
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
             
+            // Reset error states
+            nameInput.parentElement.querySelector('.error-label').classList.add('hide');
+            emailInput.parentElement.querySelector('.error-label').classList.add('hide');
+            messageInput.parentElement.querySelector('.error-label').classList.add('hide');
+
+            let isValid = true;
+
             // Validate name
             if (!nameInput.value.trim()) {
-                showError(nameInput.parentElement, true);
+                nameInput.parentElement.querySelector('.error-label').classList.remove('hide');
                 isValid = false;
-            } else {
-                showError(nameInput.parentElement, false);
             }
-            
+
             // Validate email
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailInput.value.trim() || !emailRegex.test(emailInput.value.trim())) {
-                showError(emailInput.parentElement, true);
+            if (!emailInput.value.trim() || !emailInput.value.includes('@')) {
+                emailInput.parentElement.querySelector('.error-label').classList.remove('hide');
                 isValid = false;
-            } else {
-                showError(emailInput.parentElement, false);
             }
-            
+
             // Validate message
             if (!messageInput.value.trim()) {
-                showError(messageInput.parentElement, true);
+                messageInput.parentElement.querySelector('.error-label').classList.remove('hide');
                 isValid = false;
-            } else {
-                showError(messageInput.parentElement, false);
             }
-            
-            return isValid;
-        }
-        
-        // Show or hide error message
+
+            if (isValid) {
+                submitButton.disabled = true;
+                submitButton.textContent = 'Sending...';
+
+                try {
+                    const response = await fetch(form.action, {
+                        method: 'POST',
+                        body: new FormData(form),
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        // Clear form
+                        form.reset();
+                        submitButton.textContent = 'Sent!';
+                        setTimeout(() => {
+                            submitButton.textContent = 'Submit';
+                            submitButton.disabled = false;
+                        }, 3000);
+                    } else {
+                        throw new Error('Form submission failed');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    submitButton.textContent = 'Error';
+                    setTimeout(() => {
+                        submitButton.textContent = 'Submit';
+                        submitButton.disabled = false;
+                    }, 3000);
+                }
+            }
+        });
+
         function showError(container, show) {
             const errorLabel = container.querySelector('.error-label');
             if (errorLabel) {
@@ -67,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         }
-        
+
         // Handle form submission
         submitButton.addEventListener('click', () => {
             if (validateForm()) {

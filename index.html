@@ -345,51 +345,53 @@
         <div id="fixed-contact-container" style="z-index: 1000;">
             <h3 class="section-heading">Get in Touch!</h3>
             <div class="column contact-container" id="contact-form-container">
-                <div class="input-container column" id="contact-name-input">
-                    <div class="row">
-                        <label for="contact-name-input-field">Name :</label>
-                        <span class="error-label hide">Please enter your name.</span>
+                <form action="https://formspree.io/f/xwpbvkjy" method="POST" id="contact-form">
+                    <div class="input-container column" id="contact-name-input">
+                        <div class="row">
+                            <label for="contact-name-input-field">Name :</label>
+                            <span class="error-label hide">Please enter your name.</span>
+                        </div>
+                        <input id="contact-name-input-field" name="name" required>
                     </div>
-                    <input id="contact-name-input-field">
-                </div>
-                
-                <div class="input-container column" id="contact-email-input">
-                    <div class="row">
-                        <label for="contact-email-input-field">Email :</label>
-                        <span class="error-label hide">Please enter a valid email address.</span>
+                    
+                    <div class="input-container column" id="contact-email-input">
+                        <div class="row">
+                            <label for="contact-email-input-field">Email :</label>
+                            <span class="error-label hide">Please enter a valid email address.</span>
+                        </div>
+                        <input id="contact-email-input-field" name="email" type="email" required>
                     </div>
-                    <input id="contact-email-input-field" type="email">
-                </div>
 
-                <div class="input-container column" id="contact-message-input">
-                    <div class="row">
-                        <label for="contact-message-input-field">Message :</label>
-                        <span class="error-label hide">Please enter your message.</span>
+                    <div class="input-container column" id="contact-message-input">
+                        <div class="row">
+                            <label for="contact-message-input-field">Message :</label>
+                            <span class="error-label hide">Please enter your message.</span>
+                        </div>
+                        <textarea id="contact-message-input-field" name="message" required></textarea>
                     </div>
-                    <textarea id="contact-message-input-field"></textarea>
-                </div>
-                
-                <div class="row" id="contact-button-container">
-                    <!--Social Icons-->
-                    <div class="social-icons-group">
-                        <a href="https://github.com/grace-raper" target="_blank">
-                            <img alt="github contact social icon small 28x28" class="social-icon" 
-                                height="28" src="/icons/github-icon.png" width="28">
-                        </a>
-                        <a href="https://www.linkedin.com/in/graceraper/" target="_blank">
-                            <img alt="linkedin contact social icon small 28x28" class="social-icon" 
-                                height="28" src="/icons/linkedin-icon.png" width="28">
-                        </a>
-                        <a href="mailto:graceraper@gmail.com"> 
-                            <img alt="email contact social icon small 28x28" class="social-icon" 
-                                height="28" src="/icons/mail-icon.png" width="28">
-                        </a>
+                    
+                    <div class="row" id="contact-button-container">
+                        <!--Social Icons-->
+                        <div class="social-icons-group">
+                            <a href="https://github.com/grace-raper" target="_blank">
+                                <img alt="github contact social icon small 28x28" class="social-icon" 
+                                    height="28" src="/icons/github-icon.png" width="28">
+                            </a>
+                            <a href="https://www.linkedin.com/in/graceraper/" target="_blank">
+                                <img alt="linkedin contact social icon small 28x28" class="social-icon" 
+                                    height="28" src="/icons/linkedin-icon.png" width="28">
+                            </a>
+                            <a href="mailto:graceraper@gmail.com"> 
+                                <img alt="email contact social icon small 28x28" class="social-icon" 
+                                    height="28" src="/icons/mail-icon.png" width="28">
+                            </a>
+                        </div>
+                        <!--Submit Button-->
+                        <button type="submit" class="small-button orange-hover" id="contact-submit-button">
+                            Submit
+                        </button>
                     </div>
-                    <!--Submit Button-->
-                    <div class="small-button orange-hover" id="contact-submit-button">
-                        Submit
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
 

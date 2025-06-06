@@ -766,6 +766,14 @@ svg {
     transition: opacity 0.3s ease;
 }
 
+#fixed-contact-container .section-heading {
+    margin-bottom: 0;
+}
+
+#contact-form-container {
+    margin-top: 5px;
+}
+
 #fixed-contact-container input, 
 #fixed-contact-container textarea,
 #fixed-contact-container a,
@@ -800,6 +808,7 @@ svg {
     justify-content: space-between;
     align-items: center;
     margin-top: 10px;
+    gap: 20px; /* Add space between social icons and submit button */
 }
 
 #fixed-contact-container textarea:focus,

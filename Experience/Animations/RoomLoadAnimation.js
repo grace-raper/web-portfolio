@@ -28,7 +28,6 @@ export default class RoomLoadAnimation {
         return new Promise((resolve) => {
             this.secondTimeline = new GSAP.timeline();
 
-            // Start with room elements animations first
             // Dynamically add animations for all room elements from config
             const staggerTimings = this.config.roomElements.staggerTiming;
             

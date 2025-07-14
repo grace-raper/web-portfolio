@@ -49,8 +49,10 @@ export default class Resources extends EventEmitter {
                 this.videoTexture[asset.name] = new THREE.VideoTexture(
                     this.video[asset.name]
                 );
+                // this mirrors the video
                 this.videoTexture[asset.name].wrapS = THREE.RepeatWrapping;
                 this.videoTexture[asset.name].repeat.x = - 1;
+                
                 this.videoTexture[asset.name].minFilter = THREE.NearestFilter;
                 this.videoTexture[asset.name].magFilter = THREE.NearestFilter;
                 this.videoTexture[asset.name].generateMipmaps = false;

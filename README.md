@@ -1,7 +1,7 @@
-# Portfolio of Software / Design Work
+# Grace Raper - Software Engineering Porfolio:
 
-todo: fix below link
-**[Live demo](https://abigail-bloom-portolio-bokoko33.vercel.app/)**
+live site: https://graceraper.com
+
 
 The design concept & inspiration of this portfolio was **[Bokoko33's award-winning website](https://bokoko33.me/)**. The original creator asks to please not use this _exact_ idea,
 but encouraged others to use it as a starting point/inspiration.

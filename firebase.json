@@ -8,6 +8,14 @@
         "destination": "/caspir-cam/index.html"
       },
       {
+        "source": "/shoebox-engine",
+        "destination": "/shoebox-engine/index.html"
+      },
+      {
+        "source": "/shoebox-engine/**",
+        "destination": "/shoebox-engine/index.html"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }

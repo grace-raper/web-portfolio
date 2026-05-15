@@ -1,7 +1,7 @@
 {
   "preloader": {
     "opacity": 0,
-    "delay": 1
+    "delay": 0.2
   },
   "animatedis": {
     "y": 0,

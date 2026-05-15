@@ -18,16 +18,21 @@ export default defineConfig({
         chunkFileNames: 'assets/js/[name]-[hash].js',
         entryFileNames: 'assets/js/[name]-[hash].js',
       },
+      external: ['caspir-cam']
     },
   },
   resolve: {
-    alias: {
-      '@': resolve(__dirname, './')
-    }
+    packageDirs: [resolve(__dirname, 'node_modules')]
   },
   server: {
     fs: {
-      strict: false
+      allow: ['.']
+    },
+    watch: {
+      ignored: ['**/caspir-cam/**', '**/caspir-cam', '**/node_modules/**']
     }
+  },
+  optimizeDeps: {
+    exclude: ['caspir-cam']
   }
 })

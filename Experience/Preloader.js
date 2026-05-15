@@ -36,7 +36,6 @@ export default class Preloader extends EventEmitter {
 
         this.room = this.experience.world.room.actualRoom;
         this.roomChildren = this.experience.world.room.roomChildren;
-        console.log(this.roomChildren);
     }
 
     firstIntro() {
@@ -59,7 +58,7 @@ export default class Preloader extends EventEmitter {
                     ".intro-text .animatedis",
                     {
                         yPercent: 100,
-                        stagger: 0.05,
+                        stagger: 0.03,
                         ease: "back.in(1.7)",
                     },
                     "fadeout"
@@ -89,30 +88,30 @@ export default class Preloader extends EventEmitter {
                 .to(".hero-main-title .animatedis", {
                     yPercent: 0,
                     opacity: 1,
-                    duration: 1,
+                    duration: 0.6,
                     stagger: 0,
                     ease: "back.out(1.7)"
-                }, 
+                },
             "fadein")
                 .to(".hero-main-description .animatedis", {
                     yPercent: 0,
                     opacity: 1,
-                    duration: 1,
-                    stagger: ">-0.8",
+                    duration: 0.6,
+                    stagger: ">-0.5",
                     ease: "back.out(1.7)"
                 }, "fadein")
                 .to(".first-sub .animatedis", {
                     yPercent: 0,
                     opacity: 1,
-                    duration: 1,
-                    stagger: ">-0.8",
+                    duration: 0.6,
+                    stagger: ">-0.5",
                     ease: "back.out(1.7)"
                 }, "fadein")
                 .to(".second-sub .animatedis", {
                     yPercent: 0,
                     opacity: 1,
-                    duration: 1,
-                    stagger: ">-0.8",
+                    duration: 0.6,
+                    stagger: ">-0.5",
                     ease: "back.out(1.7)"
                 }, "fadein")
                 .to(".arrow-svg-wrapper", {
@@ -156,7 +155,7 @@ export default class Preloader extends EventEmitter {
         // instead of waiting for scroll event
         setTimeout(() => {
             this.playSecondIntro();
-        }, 500);
+        }, 150);
     }
 
     async playSecondIntro() {

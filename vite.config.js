@@ -24,5 +24,10 @@ export default defineConfig({
     alias: {
       '@': resolve(__dirname, './')
     }
+  },
+  server: {
+    fs: {
+      strict: false
+    }
   }
 })

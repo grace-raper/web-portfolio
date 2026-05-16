@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grace Raper — CV</title>
+    <meta name="description" content="Grace Raper's CV — Emerging Technologies Engineer based in Seattle, WA.">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #FAF4E5;
+            --text: #333332;
+            --accent: #e8a87c;
+            --accent-light: #f5c9a0;
+            --muted: #888;
+            --border: rgba(0,0,0,0.08);
+            --max-width: 780px;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        /* ── Top bar ── */
+        .cv-topbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 2rem;
+        }
+
+        .cv-back {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            text-decoration: none;
+            color: var(--text);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        .cv-back:hover { opacity: 1; }
+        .cv-back svg { flex-shrink: 0; }
+
+        .cv-topbar-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .cv-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 0.45rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            border: 1.5px solid var(--text);
+            background: transparent;
+            color: var(--text);
+            transition: background 0.2s, color 0.2s;
+        }
+        .cv-btn:hover { background: var(--text); color: var(--bg); }
+        .cv-btn.primary {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+        }
+        .cv-btn.primary:hover { background: var(--accent-light); border-color: var(--accent-light); color: var(--text); }
+
+        /* ── Main content ── */
+        .cv-wrap {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 3rem 2rem 5rem;
+        }
+
+        /* ── Markdown rendering ── */
+        #cv-content h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+            margin-bottom: 0.4rem;
+        }
+
+        #cv-content h1 + p {
+            font-size: 13.5px;
+            color: var(--muted);
+            margin-bottom: 0.6rem;
+        }
+
+        #cv-content h1 + p a {
+            color: var(--muted);
+        }
+
+        #cv-content h1 + p + p {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 2.5rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 1.5px solid var(--border);
+        }
+
+        #cv-content h1 + p + p a {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 0.3rem 0.8rem;
+            border-radius: 100px;
+            border: 1.5px solid var(--border);
+            color: var(--text);
+            transition: border-color 0.2s, background 0.2s;
+        }
+        #cv-content h1 + p + p a:hover {
+            border-color: var(--accent);
+            background: rgba(232, 168, 124, 0.1);
+        }
+
+        #cv-content h2 {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-top: 2.5rem;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1.5px solid var(--border);
+        }
+
+        /* Job entries: **Title** @ [Company](url) _(dates)_ */
+        #cv-content p {
+            margin-bottom: 0.5rem;
+        }
+
+        #cv-content p strong {
+            font-weight: 700;
+        }
+
+        #cv-content p em {
+            color: var(--muted);
+            font-style: normal;
+            font-size: 13px;
+        }
+
+        #cv-content a {
+            color: var(--text);
+            text-decoration-color: var(--accent);
+            text-underline-offset: 3px;
+        }
+        #cv-content a:hover { color: var(--accent); }
+
+        #cv-content ul {
+            list-style: none;
+            margin: 0.5rem 0 1.5rem;
+            padding: 0;
+        }
+
+        #cv-content li {
+            position: relative;
+            padding-left: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-size: 14px;
+            color: #555;
+            line-height: 1.65;
+        }
+
+        #cv-content li::before {
+            content: '–';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        #cv-content li strong em,
+        #cv-content li em strong {
+            font-style: normal;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        /* ── Loading / error states ── */
+        .cv-status {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            min-height: 40vh;
+            color: var(--muted);
+            font-size: 14px;
+        }
+        .cv-spinner {
+            width: 28px;
+            height: 28px;
+            border: 2.5px solid var(--border);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ── Last-updated badge ── */
+        .cv-updated {
+            font-size: 11px;
+            color: var(--muted);
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* ── Print ── */
+        @media print {
+            .cv-topbar { display: none; }
+            body { font-size: 13px; }
+            #cv-content h1 { font-size: 1.8rem; }
+            .cv-wrap { padding: 1rem 0; }
+        }
+
+        /* ── Mobile ── */
+        @media (max-width: 600px) {
+            .cv-topbar { padding: 0.75rem 1rem; }
+            .cv-wrap { padding: 2rem 1.25rem 4rem; }
+            #cv-content h1 { font-size: 1.8rem; }
+            .cv-btn span { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="cv-topbar">
+    <a class="cv-back" href="/">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 12H5M12 5l-7 7 7 7"/>
+        </svg>
+        <span>Portfolio</span>
+    </a>
+    <div class="cv-topbar-actions">
+        <a class="cv-btn" href="https://github.com/grace-raper/digital-cv" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            <span>Source</span>
+        </a>
+        <button class="cv-btn primary" onclick="window.print()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            <span>Print</span>
+        </button>
+    </div>
+</nav>
+
+<main class="cv-wrap">
+    <div id="cv-content">
+        <div class="cv-status">
+            <div class="cv-spinner"></div>
+            <span>Loading CV…</span>
+        </div>
+    </div>
+</main>
+
+<script>
+    const CV_URL = 'https://raw.githubusercontent.com/grace-raper/digital-cv/main/README.md';
+    const API_URL = 'https://api.github.com/repos/grace-raper/digital-cv/commits?path=README.md&per_page=1';
+
+    async function loadCV() {
+        const el = document.getElementById('cv-content');
+        try {
+            const [mdRes, commitRes] = await Promise.allSettled([
+                fetch(CV_URL),
+                fetch(API_URL)
+            ]);
+
+            if (mdRes.status !== 'fulfilled' || !mdRes.value.ok) {
+                throw new Error('Failed to fetch CV');
+            }
+
+            const markdown = await mdRes.value.text();
+            el.innerHTML = marked.parse(markdown);
+
+            // Append last-updated badge if commit info available
+            if (commitRes.status === 'fulfilled' && commitRes.value.ok) {
+                const commits = await commitRes.value.json();
+                if (commits.length) {
+                    const date = new Date(commits[0].commit.committer.date);
+                    const label = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+                    const badge = document.createElement('p');
+                    badge.className = 'cv-updated';
+                    badge.textContent = `Last updated ${label}`;
+                    el.appendChild(badge);
+                }
+            }
+
+            // Open all links in new tab
+            el.querySelectorAll('a').forEach(a => {
+                if (a.hostname !== location.hostname) {
+                    a.target = '_blank';
+                    a.rel = 'noopener';
+                }
+            });
+
+        } catch (err) {
+            el.innerHTML = `
+                <div class="cv-status">
+                    <p>Couldn't load CV right now.</p>
+                    <a class="cv-btn" href="${CV_URL}" target="_blank">View on GitHub</a>
+                </div>`;
+        }
+    }
+
+    loadCV();
+</script>
+</body>
+</html>

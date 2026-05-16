@@ -16,6 +16,18 @@
         "destination": "/shoebox-engine/index.html"
       },
       {
+        "source": "/cv",
+        "destination": "/cv.html"
+      },
+      {
+        "source": "/resume",
+        "destination": "/cv.html"
+      },
+      {
+        "source": "/digital-cv",
+        "destination": "/cv.html"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }

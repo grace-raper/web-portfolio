@@ -98,6 +98,13 @@ export default class Controls {
 
         this.isContactFormVisible = false;
 
+        // Show the floating nav now that the intro animation is complete
+        this.floatingNav = document.getElementById('floating-nav');
+        if (this.floatingNav) {
+            gsap.set(this.floatingNav, { opacity: 0, y: -12, pointerEvents: 'none' });
+            gsap.to(this.floatingNav, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', pointerEvents: 'auto' });
+        }
+
         ScrollTrigger.matchMedia(
             {
                 //Desktop - positions camera in desktop scenes
@@ -650,6 +657,29 @@ export default class Controls {
                         this.circleSixth.scale,
                         {x: 10, y: 10, z: 10},
                     );
+
+                    // Floating nav — hide during middle scroll sections, show at hero + bottom
+                    const nav = this.floatingNav;
+                    if (nav) {
+                        const navHide = () => gsap.to(nav, { opacity: 0, y: -12, duration: 0.35, ease: 'power2.in', pointerEvents: 'none' });
+                        const navShow = () => gsap.to(nav, { opacity: 1, y: 0, duration: 0.4, ease: 'power2.out', pointerEvents: 'auto' });
+
+                        // Hide when entering scrolling sections, show when scrolling back to hero
+                        ScrollTrigger.create({
+                            trigger: '.first-move',
+                            start: 'top top',
+                            onEnter: navHide,
+                            onLeaveBack: navShow,
+                        });
+
+                        // Show when reaching the contact/bottom section, hide when leaving back up
+                        ScrollTrigger.create({
+                            trigger: '.sixth-move',
+                            start: 'top top',
+                            onEnter: navShow,
+                            onLeaveBack: navHide,
+                        });
+                    }
                 },
             });
     }

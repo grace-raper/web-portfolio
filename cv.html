@@ -30,70 +30,65 @@
             font-size: 15px;
         }
 
-        /* ── Top bar ── */
-        .cv-topbar {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: var(--bg);
-            border-bottom: 1px solid var(--border);
+        /* ── Pill nav (matches the floating nav on the main portfolio) ── */
+        .cv-pill {
+            position: fixed;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 999;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 0.75rem 2rem;
-            gap: 1rem;
+            gap: 0;
+            background: rgba(250, 244, 229, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(51, 51, 50, 0.1);
+            border-radius: 100px;
+            padding: 0.45rem 0.6rem;
+            box-shadow: 0 4px 24px rgba(51, 51, 50, 0.1);
+            white-space: nowrap;
         }
 
-        .cv-back {
+        .cv-pill-link {
             display: flex;
             align-items: center;
-            gap: 0.4rem;
-            text-decoration: none;
-            color: var(--text);
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            opacity: 0.7;
-            transition: opacity 0.2s;
-            flex-shrink: 0;
-        }
-        .cv-back:hover { opacity: 1; }
-        .cv-back svg { flex-shrink: 0; }
-
-        /* Centre nav links */
-        .cv-nav {
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-            flex: 1;
-            justify-content: center;
-        }
-        .cv-nav-link {
-            text-decoration: none;
-            color: var(--text);
+            gap: 0.3rem;
             font-size: 12px;
             font-weight: 600;
-            letter-spacing: 0.06em;
+            letter-spacing: 0.07em;
             text-transform: uppercase;
-            padding: 0.35rem 0.75rem;
-            border-radius: 6px;
-            opacity: 0.55;
-            transition: opacity 0.2s, background 0.2s;
+            text-decoration: none;
+            color: #333332;
+            padding: 0.4rem 1rem;
+            border-radius: 100px;
+            transition: background 0.18s, color 0.18s;
         }
-        .cv-nav-link:hover { opacity: 1; background: rgba(0,0,0,0.05); }
-        .cv-nav-link.active { opacity: 1; color: var(--accent); }
-        .cv-nav-divider {
+        .cv-pill-link:hover {
+            background: #333332;
+            color: #FAF4E5;
+        }
+        .cv-pill-link.active {
+            background: rgba(51, 51, 50, 0.07);
+            pointer-events: none;
+            cursor: default;
+        }
+        .cv-pill-divider {
             width: 1px;
             height: 14px;
-            background: var(--border);
+            background: rgba(51, 51, 50, 0.1);
             flex-shrink: 0;
         }
 
-        .cv-topbar-actions {
+        /* ── Top-right action buttons (print / source) ── */
+        .cv-actions {
+            position: fixed;
+            top: 24px;
+            right: 2rem;
+            z-index: 999;
             display: flex;
-            gap: 0.75rem;
-            flex-shrink: 0;
+            gap: 0.5rem;
+            align-items: center;
         }
 
         .cv-btn {
@@ -101,20 +96,27 @@
             align-items: center;
             gap: 0.35rem;
             font-family: 'Montserrat', sans-serif;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
             letter-spacing: 0.06em;
             text-transform: uppercase;
-            padding: 0.45rem 1rem;
-            border-radius: 6px;
+            padding: 0.4rem 0.85rem;
+            border-radius: 100px;
             cursor: pointer;
             text-decoration: none;
-            border: 1.5px solid var(--text);
-            background: transparent;
-            color: var(--text);
-            transition: background 0.2s, color 0.2s;
+            border: 1.5px solid rgba(51, 51, 50, 0.18);
+            background: rgba(250, 244, 229, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            color: #333332;
+            box-shadow: 0 4px 24px rgba(51, 51, 50, 0.08);
+            transition: background 0.18s, color 0.18s, border-color 0.18s;
         }
-        .cv-btn:hover { background: var(--text); color: var(--bg); }
+        .cv-btn:hover {
+            background: #333332;
+            color: #FAF4E5;
+            border-color: #333332;
+        }
         .cv-btn.primary {
             background: var(--accent);
             border-color: var(--accent);
@@ -126,7 +128,8 @@
         .cv-wrap {
             max-width: var(--max-width);
             margin: 0 auto;
-            padding: 3rem 2rem 5rem;
+            /* top padding clears the fixed pill nav (24px offset + ~40px pill height + 16px gap) */
+            padding: 5.5rem 2rem 5rem;
         }
 
         /* ── Markdown rendering ── */
@@ -270,7 +273,7 @@
 
         /* ── Print ── */
         @media print {
-            .cv-topbar { display: none; }
+            .cv-pill, .cv-actions { display: none; }
             body { font-size: 13px; }
             #cv-content h1 { font-size: 1.8rem; }
             .cv-wrap { padding: 1rem 0; }
@@ -278,43 +281,44 @@
 
         /* ── Mobile ── */
         @media (max-width: 600px) {
-            .cv-topbar { padding: 0.75rem 1rem; }
-            .cv-wrap { padding: 2rem 1.25rem 4rem; }
-            #cv-content h1 { font-size: 1.8rem; }
+            .cv-pill { top: 14px; }
+            .cv-pill-link { font-size: 11px; padding: 0.35rem 0.7rem; }
+            .cv-actions { top: 14px; right: 1rem; }
             .cv-btn span { display: none; }
-            .cv-nav { display: none; }
+            .cv-wrap { padding: 4.5rem 1.25rem 4rem; }
+            #cv-content h1 { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body>
 
-<nav class="cv-topbar">
-    <a class="cv-back" href="/">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+<!-- Pill nav — mirrors the floating nav on the main portfolio -->
+<nav class="cv-pill" aria-label="Site navigation">
+    <a class="cv-pill-link" href="/">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M19 12H5M12 5l-7 7 7 7"/>
         </svg>
-        <span>Home</span>
+        Home
     </a>
-
-    <div class="cv-nav">
-        <a class="cv-nav-link active" href="/resume">Resume</a>
-        <div class="cv-nav-divider"></div>
-        <a class="cv-nav-link" href="/#projects">Projects</a>
-        <div class="cv-nav-divider"></div>
-        <a class="cv-nav-link" href="/essays">Essays</a>
-    </div>
-
-    <div class="cv-topbar-actions">
-        <a class="cv-btn" href="https://github.com/grace-raper/digital-cv" target="_blank" rel="noopener">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-            <span>Source</span>
-        </a>
-        <button class="cv-btn primary" onclick="window.print()">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-            <span>Print</span>
-        </button>
-    </div>
+    <span class="cv-pill-divider"></span>
+    <a class="cv-pill-link active" href="/resume" aria-current="page">Resume</a>
+    <span class="cv-pill-divider"></span>
+    <a class="cv-pill-link" href="/#projects">Projects</a>
+    <span class="cv-pill-divider"></span>
+    <a class="cv-pill-link" href="/essays">Essays</a>
 </nav>
+
+<!-- Utility actions — tucked in the top-right corner -->
+<div class="cv-actions" role="toolbar" aria-label="CV actions">
+    <a class="cv-btn" href="https://github.com/grace-raper/digital-cv" target="_blank" rel="noopener" title="View source on GitHub">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        <span>Source</span>
+    </a>
+    <button class="cv-btn primary" onclick="window.print()" title="Print CV">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        <span>Print</span>
+    </button>
+</div>
 
 <main class="cv-wrap">
     <div id="cv-content">

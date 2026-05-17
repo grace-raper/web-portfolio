@@ -1,7 +1,27 @@
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
 
+// Mirror Firebase hosting rewrites so dev server behaves the same as production
+const firebaseDevRewrites = {
+  name: 'firebase-dev-rewrites',
+  configureServer(server) {
+    server.middlewares.use((req, _res, next) => {
+      const url = req.url?.split('?')[0];
+      const rewrites = {
+        '/cv':         '/cv.html',
+        '/resume':     '/cv.html',
+        '/digital-cv': '/cv.html',
+        '/caspir-cam': '/caspir-cam/index.html',
+        '/shoebox-engine': '/shoebox-engine/index.html',
+      };
+      if (rewrites[url]) req.url = rewrites[url];
+      next();
+    });
+  }
+};
+
 export default defineConfig({
+  plugins: [firebaseDevRewrites],
   build: {
     rollupOptions: {
       input: {

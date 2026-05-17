@@ -41,6 +41,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 0.75rem 2rem;
+            gap: 1rem;
         }
 
         .cv-back {
@@ -55,13 +56,44 @@
             text-transform: uppercase;
             opacity: 0.7;
             transition: opacity 0.2s;
+            flex-shrink: 0;
         }
         .cv-back:hover { opacity: 1; }
         .cv-back svg { flex-shrink: 0; }
 
+        /* Centre nav links */
+        .cv-nav {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            flex: 1;
+            justify-content: center;
+        }
+        .cv-nav-link {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            opacity: 0.55;
+            transition: opacity 0.2s, background 0.2s;
+        }
+        .cv-nav-link:hover { opacity: 1; background: rgba(0,0,0,0.05); }
+        .cv-nav-link.active { opacity: 1; color: var(--accent); }
+        .cv-nav-divider {
+            width: 1px;
+            height: 14px;
+            background: var(--border);
+            flex-shrink: 0;
+        }
+
         .cv-topbar-actions {
             display: flex;
             gap: 0.75rem;
+            flex-shrink: 0;
         }
 
         .cv-btn {
@@ -250,6 +282,7 @@
             .cv-wrap { padding: 2rem 1.25rem 4rem; }
             #cv-content h1 { font-size: 1.8rem; }
             .cv-btn span { display: none; }
+            .cv-nav { display: none; }
         }
     </style>
 </head>
@@ -260,8 +293,17 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M19 12H5M12 5l-7 7 7 7"/>
         </svg>
-        <span>Portfolio</span>
+        <span>Home</span>
     </a>
+
+    <div class="cv-nav">
+        <a class="cv-nav-link active" href="/resume">Resume</a>
+        <div class="cv-nav-divider"></div>
+        <a class="cv-nav-link" href="/#projects">Projects</a>
+        <div class="cv-nav-divider"></div>
+        <a class="cv-nav-link" href="/essays">Essays</a>
+    </div>
+
     <div class="cv-topbar-actions">
         <a class="cv-btn" href="https://github.com/grace-raper/digital-cv" target="_blank" rel="noopener">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
